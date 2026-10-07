@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Project Intake Form</title>
+
+  <!-- Google reCAPTCHA v3 (site key is public; the secret key lives in Formspree only) -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY" async defer></script>
+
+  <style>
+    :root {
+      /* Brand Colors */
+      --color-red: #A50021;
+      --color-navy: #0D2B45;
+      --color-tan: #C4BAB0;
+      --color-white: #FFFFFF;
+      --color-accent: #C8E000;
+
+      /* Fonts */
+      --font-primary: 'Ubuntu', sans-serif;
+      --font-mono: 'Source Code Pro', monospace;
+
+      /* Font weights */
+      --fw-regular: 400;
+      --fw-bold: 700;
+
+      /* Font sizes */
+      --fs-label: 13px;
+      --fs-body: 14px;
+
+      /* Letter spacing */
+      --ls-wide: 3px;
+      --ls-xwide: 4px;
+
+      /* Spacing scale */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 32px;
+      --space-xl: 48px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-navy);
+      color: var(--color-tan);
+      font-family: var(--font-primary);
+      padding: 40px 20px 80px;
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--color-navy);
+      border-top: 3px solid var(--color-red);
+      border-bottom: 1px solid rgba(196,186,176,0.2);
+      border-radius: 4px;
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: var(--space-lg);
+    }
+
+    header h1 {
+      font-family: var(--font-primary);
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    header p.sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(200,224,0,0.18) 0%, rgba(200,224,0,0) 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 8px;
+    }
+
+    /* Progress Bar */
+    .progress-block {
+      margin-top: var(--space-lg);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(196,186,176,0.2);
+      border-radius: 6px;
+      padding: var(--space-sm) var(--space-md);
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.25);
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      color: var(--color-tan);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+
+    @keyframes progressGlow {
+      0% { box-shadow: 0 0 0px var(--color-accent); }
+      50% { box-shadow: 0 0 12px var(--color-accent); }
+      100% { box-shadow: 0 0 0px var(--color-accent); }
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(196,186,176,0.25);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-red));
+      box-shadow: 0 0 8px var(--color-accent);
+      transition: width 0.3s ease;
+    }
+
+    .progress-fill.complete {
+      animation: progressGlow 1.5s ease-in-out 2;
+    }
+
+    /* Card Layout */
+    .intake-form-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(196, 186, 176, 0.25);
+      border-top: 3px solid var(--color-red);
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+      padding: var(--space-lg);
+    }
+
+    /* Form Groups */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Inputs & Textareas */
+    .form-textarea,
+    .form-input {
+      background: transparent;
+      border: 1.5px solid var(--color-tan);
+      border-radius: 2px;
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      font-size: var(--fs-body);
+      padding: var(--space-sm) var(--space-md);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-textarea:hover,
+    .form-input:hover {
+      border-color: var(--color-accent);
+    }
+
+    .form-textarea:focus,
+    .form-input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 5px rgba(200, 224, 0, 0.08);
+    }
+
+    /* Helper text under a field */
+    .form-hint {
+      font-size: var(--fs-label);
+      line-height: 1.5;
+      color: var(--color-tan);
+      margin: var(--space-xs) 0 0;
+    }
+
+    .form-hint a {
+      color: var(--color-accent);
+    }
+
+    /* Custom Checkboxes & Radios */
+    .form-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+
+    .form-options label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-primary);
+      font-size: var(--fs-body);
+      color: var(--color-tan);
+      cursor: pointer;
+    }
+
+    .form-options input[type="checkbox"],
+    .form-options input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--color-tan);
+      border-radius: 3px;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .form-options input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .form-options input[type="checkbox"]:checked,
+    .form-options input[type="radio"]:checked {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+    }
+
+    .form-options input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 4px;
+      height: 9px;
+      border: solid var(--color-navy);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .form-options input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 8px;
+      height: 8px;
+      background: var(--color-navy);
+      border-radius: 50%;
+    }
+
+    /* Submit Button & Success Notice */
+    .intake-submit {
+      background: var(--color-red);
+      color: var(--color-white);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-xwide);
+      text-transform: uppercase;
+      padding: 1rem 3rem;
+      margin: var(--space-lg) auto 0;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .intake-submit:hover {
+      background: var(--color-accent);
+      color: var(--color-navy);
+      transform: translateY(-2px);
+    }
+
+    .intake-submit:active {
+      transform: translateY(0);
+    }
+
+    .form-success {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: rgba(200, 224, 0, 0.1);
+      border: 1px solid var(--color-accent);
+      border-radius: 4px;
+      color: var(--color-accent);
+      text-align: center;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">// pre-flight</p>
+      <h1>Ship It.</h1>
+      <p class="sub">This 5-minute pre-flight form helps map out your goals, scope, and style preferences before our initial call so we can jump straight into building.</p>
+
+      <div class="progress-block">
+        <div class="progress-row">
+          <span>Questions</span>
+          <span><span class="progress-count" id="progressCount">0</span> / <span id="progressTotal">20</span> completed</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="intake-form-card">
+      <form class="intake-form" action="https://formspree.io/f/xeajokbe" method="POST">
+        <input type="hidden" name="_subject" value="New Pre-Flight Questionnaire Submission">
+
+        <!-- Contact info (not counted in the 20 questions) -->
+        <div class="form-group">
+          <label for="client_name" class="form-label">Your name</label>
+          <input type="text" id="client_name" name="name" class="form-input" autocomplete="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="client_email" class="form-label">Your email</label>
+          <input type="email" id="client_email" name="email" class="form-input" autocomplete="email" required>
+        </div>
+
+        <!-- 1. Business -->
+        <div class="form-group">
+          <label for="business_audience" class="form-label">1. What does your business do and who is your target audience?</label>
+          <textarea id="business_audience" name="business_audience" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 2. Primary Goal -->
+        <div class="form-group">
+          <p class="form-label">2. What's the primary goal of the website?</p>
+          <div class="form-options">
+            <label><input type="radio" name="website_goal" value="leads"> Generate Leads</label>
+            <label><input type="radio" name="website_goal" value="products"> Sell Products</label>
+            <label><input type="radio" name="website_goal" value="bookings"> Accept Bookings</label>
+            <label><input type="radio" name="website_goal" value="other"> Other</label>
+          </div>
+        </div>
+
+        <!-- 3. Success -->
+        <div class="form-group">
+          <label for="success_metrics" class="form-label">3. What does success look like? How will you measure it?</label>
+          <textarea id="success_metrics" name="success_metrics" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 4. Branding -->
+        <div class="form-group">
+          <p class="form-label">4. Do you have existing branding?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="branding[]" value="logo"> Logo</label>
+            <label><input type="checkbox" name="branding[]" value="icons"> Icons</label>
+            <label><input type="checkbox" name="branding[]" value="colors"> Color Palette</label>
+            <label><input type="checkbox" name="branding[]" value="fonts"> Fonts</label>
+          </div>
+        </div>
+
+        <!-- 5. Brand Files -->
+        <div class="form-group">
+          <label for="brand_files_link" class="form-label">5. Share a link to your brand files (Google Drive or Dropbox). Leave blank if you don't have these yet.</label>
+          <input type="url" id="brand_files_link" name="brand_files_link" class="form-input" placeholder="https://">
+          <p class="form-hint">Or email them to <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a> after you submit.</p>
+        </div>
+
+        <!-- 6. Inspiration -->
+        <div class="form-group">
+          <label for="inspiration_sites" class="form-label">6. Share 1–2 websites you like for inspiration. (Optional)</label>
+          <textarea id="inspiration_sites" name="inspiration_sites" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 7. Vibe -->
+        <div class="form-group">
+          <p class="form-label">7. What's the overall vibe or tone you're looking for?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="vibe[]" value="modern"> Modern</label>
+            <label><input type="checkbox" name="vibe[]" value="corporate"> Corporate</label>
+            <label><input type="checkbox" name="vibe[]" value="playful"> Playful</label>
+            <label><input type="checkbox" name="vibe[]" value="minimal"> Minimal</label>
+            <label><input type="checkbox" name="vibe[]" value="bold"> Bold</label>
+            <label><input type="checkbox" name="vibe[]" value="old_west"> Old West</label>
+            <label><input type="checkbox" name="vibe[]" value="not_sure"> Not sure yet</label>
+          </div>
+        </div>
+
+        <!-- 8. Copy -->
+        <div class="form-group">
+          <label for="copy_writer" class="form-label">8. Who will be writing the website copy?</label>
+          <textarea id="copy_writer" name="copy_writer" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 9. Pages -->
+        <div class="form-group">
+          <label for="pages_needed" class="form-label">9. How many pages do you need, and what sections should they include?</label>
+          <textarea id="pages_needed" name="pages_needed" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 10. Domain -->
+        <div class="form-group">
+          <p class="form-label">10. Do you already have domain and hosting?</p>
+          <div class="form-options">
+            <label><input type="radio" name="domain_hosting" value="yes"> Yes</label>
+            <label><input type="radio" name="domain_hosting" value="no"> No</label>
+          </div>
+        </div>
+
+        <!-- 11. CMS -->
+        <div class="form-group">
+          <p class="form-label">11. Do you need a CMS? (Do you want to edit text/photos yourself later?)</p>
+          <div class="form-options">
+            <label><input type="radio" name="cms_needed" value="yes"> Yes</label>
+            <label><input type="radio" name="cms_needed" value="no"> No</label>
+            <label><input type="radio" name="cms_needed" value="maybe"> Maybe</label>
+          </div>
+        </div>
+
+        <!-- 12. Integrations -->
+        <div class="form-group">
+          <p class="form-label">12. Any integrations needed?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="integrations[]" value="booking"> Booking System</label>
+            <label><input type="checkbox" name="integrations[]" value="ecommerce"> E-commerce</label>
+            <label><input type="checkbox" name="integrations[]" value="contact_forms"> Contact Forms</label>
+            <label><input type="checkbox" name="integrations[]" value="social_feeds"> Social Media Feeds</label>
+            <label><input type="checkbox" name="integrations[]" value="other"> Other</label>
+          </div>
+        </div>
+
+        <!-- 13. Competition -->
+        <div class="form-group">
+          <label for="competition" class="form-label">13. What sets you apart from your competition?</label>
+          <textarea id="competition" name="competition" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 14. Launch -->
+        <div class="form-group">
+          <label for="launch_date" class="form-label">14. Do you have a hard launch date?</label>
+          <textarea id="launch_date" name="launch_date" class="form-textarea"></textarea>
+        </div>
+
+        <!-- 15. Maintenance -->
+        <div class="form-group">
+          <p class="form-label">15. Will you maintain the site after launch?</p>
+          <div class="form-options">
+            <label><input type="radio" name="maintenance" value="self"> I will maintain it</label>
+            <label><input type="radio" name="maintenance" value="support"> I want ongoing support</label>
+            <label><input type="radio" name="maintenance" value="not_sure"> Not sure yet</label>
+          </div>
+        </div>
+
+        <!-- 16. SEO -->
+        <div class="form-group">
+          <p class="form-label">16. Do you need SEO, analytics, or other ongoing services?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="seo_services[]" value="seo"> SEO</label>
+            <label><input type="checkbox" name="seo_services[]" value="analytics"> Analytics</label>
+            <label><input type="checkbox" name="seo_services[]" value="reporting"> Monthly Reporting</label>
+            <label><input type="checkbox" name="seo_services[]" value="none"> None</label>
+            <label><input type="checkbox" name="seo_services[]" value="not_sure"> Not sure</label>
+          </div>
+        </div>
+
+        <!-- 17. Legal -->
+        <div class="form-group">
+          <p class="form-label">17. Do you need any legal pages?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="legal_pages[]" value="privacy"> Privacy Policy</label>
+            <label><input type="checkbox" name="legal_pages[]" value="terms"> Terms &amp; Conditions</label>
+            <label><input type="checkbox" name="legal_pages[]" value="cookies"> Cookie Notice</label>
+            <label><input type="checkbox" name="legal_pages[]" value="accessibility"> Accessibility Statement</label>
+            <label><input type="checkbox" name="legal_pages[]" value="not_sure"> Not sure</label>
+          </div>
+        </div>
+
+        <!-- 18. Accessibility -->
+        <div class="form-group">
+          <p class="form-label">18. Do you have accessibility requirements?</p>
+          <div class="form-options">
+            <label><input type="checkbox" name="accessibility[]" value="ada"> ADA Compliance</label>
+            <label><input type="checkbox" name="accessibility[]" value="contrast"> Contrast</label>
+            <label><input type="checkbox" name="accessibility[]" value="alt_text"> Alt Text</label>
+            <label><input type="checkbox" name="accessibility[]" value="readable_fonts"> Readable Fonts</label>
+            <label><input type="checkbox" name="accessibility[]" value="other"> Other</label>
+          </div>
+        </div>
+
+        <!-- 19. Updating -->
+        <div class="form-group">
+          <p class="form-label">19. How often do you expect to update your website?</p>
+          <div class="form-options">
+            <label><input type="radio" name="update_frequency" value="weekly"> Weekly</label>
+            <label><input type="radio" name="update_frequency" value="monthly"> Monthly</label>
+            <label><input type="radio" name="update_frequency" value="rarely"> Rarely</label>
+            <label><input type="radio" name="update_frequency" value="other"> Other</label>
+          </div>
+        </div>
+
+        <!-- 20. Future -->
+        <div class="form-group">
+          <label for="future_plans" class="form-label">20. Where do you see your business in the next 1–2 years?</label>
+          <textarea id="future_plans" name="future_plans" class="form-textarea"></textarea>
+        </div>
+
+        <!-- Honeypot: hidden from people, bots fill it in, Formspree drops those submissions -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <button type="submit" class="intake-submit">Submit Form</button>
+      </form>
+      <div class="form-success" style="display:none;">
+        <p>✅ Thanks, your pre‑flight form has been submitted successfully!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.querySelector('.intake-form');
+    const submitBtn = form.querySelector('.intake-submit');
+    const successMsg = document.querySelector('.form-success');
+    const progressCount = document.getElementById('progressCount');
+    const progressFill = document.getElementById('progressFill');
+
+    // Each question is defined by the name(s) of its input(s).
+    // Radio/checkbox groups share a name, so list each group once.
+    // Name and email are contact info, so they are left out of the count.
+    const questionFields = [
+      ['business_audience'],
+      ['website_goal'],
+      ['success_metrics'],
+      ['branding[]'],
+      ['brand_files_link'],
+      ['inspiration_sites'],
+      ['vibe[]'],
+      ['copy_writer'],
+      ['pages_needed'],
+      ['domain_hosting'],
+      ['cms_needed'],
+      ['integrations[]'],
+      ['competition'],
+      ['launch_date'],
+      ['maintenance'],
+      ['seo_services[]'],
+      ['legal_pages[]'],
+      ['accessibility[]'],
+      ['update_frequency'],
+      ['future_plans']
+    ];
+
+    function isQuestionAnswered(fieldNames) {
+      const name = fieldNames[0];
+      const elements = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+      if (!elements.length) return false;
+
+      const first = elements[0];
+      if (first.type === 'checkbox' || first.type === 'radio') {
+        return Array.from(elements).some(el => el.checked);
+      }
+      // text/url/textarea
+      return Array.from(elements).some(el => el.value.trim().length > 0);
+    }
+
+    function updateProgress() {
+      const answered = questionFields.filter(isQuestionAnswered).length;
+      const total = questionFields.length;
+      const pct = Math.round((answered / total) * 100);
+
+      if (progressCount) progressCount.textContent = answered;
+      if (progressFill) {
+        progressFill.style.width = pct + '%';
+        progressFill.classList.toggle('complete', answered === total);
+      }
+    }
+
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+    updateProgress();
+
+    // reCAPTCHA v3: ask Google for a one-time token that Formspree verifies.
+    const RECAPTCHA_SITE_KEY = '6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY';
+
+    function getRecaptchaToken() {
+      return new Promise((resolve, reject) => {
+        if (typeof grecaptcha === 'undefined') {
+          reject(new Error('reCAPTCHA did not load'));
+          return;
+        }
+        grecaptcha.ready(() => {
+          grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' }).then(resolve, reject);
+        });
+      });
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(form);
+        formData.append('g-recaptcha-response', await getRecaptchaToken());
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          if (successMsg) successMsg.style.display = 'block';
+        } else {
+          alert('Something went wrong submitting the form. Please try again or email hello@stoltzwebdesign.com');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Form';
+        }
+      } catch {
+        alert('Something went wrong submitting the form. Please try again or email hello@stoltzwebdesign.com');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Form';
+      }
+    });
+  </script>
+
+</body>
+</html>

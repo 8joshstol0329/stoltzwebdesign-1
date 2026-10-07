@@ -1,0 +1,8 @@
+# Let search engines crawl the whole site
+User-agent: *
+Allow: /
+
+# The "thanks for your message" page isn't useful in search results
+Disallow: /thanks
+
+Sitemap: https://stoltzwebdesign.com/sitemap.xml

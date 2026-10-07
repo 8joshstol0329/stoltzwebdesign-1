@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+  <!-- ===== Page title + search description (what Google shows) ===== -->
+  <title>Joshua Stoltz | Web Developer | Austin MN</title>
+  <meta name="description" content="Stoltz Web Design builds custom, hand-coded websites for small businesses in Austin, MN and southern Minnesota. Fast, mobile-friendly sites with fixed, upfront pricing.">
+  <link rel="canonical" href="https://stoltzwebdesign.com/">
+  <meta name="theme-color" content="#0D2B45">
+ 
+  <!-- ===== Link previews: Facebook, texts, LinkedIn (Open Graph) ===== -->
+ <meta name="google-site-verification" content="0FNvPrrADdDI3hpWzajGYseowH3FAzj6MbQ3qB4H9hs" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Stoltz Web Design">
+  <meta property="og:title" content="Joshua Stoltz | Web Developer | Austin MN">
+  <meta property="og:description" content="Building clean, fast websites for Minnesota small businesses.">
+  <meta property="og:url" content="https://stoltzwebdesign.com/">
+  <meta property="og:image" content="https://stoltzwebdesign.com/images/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Stoltz Web Design: hand-coded websites for Minnesota small businesses">
+ 
+  <!-- ===== Link previews: X / Twitter ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Joshua Stoltz | Web Developer | Austin MN">
+  <meta name="twitter:description" content="Building clean, fast websites for Minnesota small businesses.">
+  <meta name="twitter:image" content="https://stoltzwebdesign.com/images/social-preview.png">
+ 
+  <!-- ===== Business info for Google (local search) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Stoltz Web Design",
+    "url": "https://stoltzwebdesign.com/",
+    "logo": "https://stoltzwebdesign.com/images/stoltzwebdesign-logo-800x400.png",
+    "image": "https://stoltzwebdesign.com/images/social-preview.png",
+    "description": "Custom, hand-coded websites for small businesses in Austin, MN and southern Minnesota.",
+    "email": "hello@stoltzwebdesign.com",
+    "founder": { "@type": "Person", "name": "Joshua Stoltz" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Austin",
+      "addressRegion": "MN",
+      "postalCode": "55912",
+      "addressCountry": "US"
+    },
+    "areaServed": "Southern Minnesota",
+    "sameAs": [
+      "https://www.facebook.com/stoltzwebdesign",
+      "https://www.linkedin.com/in/joshua-stoltz-bab0a749/",
+      "https://www.instagram.com/8joshstol0329"
+    ]
+  }
+  </script>
+ 
+  <!-- ===== Fonts: only the ones the site uses (Playfair Display is for the SEMSCA card) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Ubuntu:wght@400;700&family=Playfair+Display:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Ubuntu:wght@400;700&family=Playfair+Display:wght@700&display=swap"></noscript>
+ 
+  <!-- ===== Icons ===== -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+
+  <!-- ===== Google reCAPTCHA v3 (site key is public; the secret key lives in Formspree only) ===== -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY" async defer></script>
+ 
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+     1. HEADER / NAVIGATION
+     ========================================================================== -->
+<header>
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">
+      <img src="images/stoltzwebdesign-logo.webp"
+           srcset="images/stoltzwebdesign-logo-300.webp 300w, images/stoltzwebdesign-logo-448.webp 448w, images/stoltzwebdesign-logo.webp 600w"
+           sizes="(max-width: 360px) 200px, (max-width: 768px) 224px, (max-width: 991px) 248px, 300px"
+           alt="Stoltz Web Design" width="600" height="300" fetchpriority="high">
+    </a>
+    <a class="nav-link nav-btn-cta" href="client-questionnaire.html">Start a Project</a>
+  </nav>
+</header>
+
+<!-- Scroll-dot navigation — replaces the old horizontal nav links -->
+<nav class="scroll-dots" id="scrollDots">
+  <div class="dot" data-target="hero"><span class="dot-label">Home</span></div>
+  <div class="dot" data-target="about"><span class="dot-label">About</span></div>
+  <div class="dot" data-target="services"><span class="dot-label">Services</span></div>
+  <div class="dot" data-target="pricing"><span class="dot-label">Pricing</span></div>
+  <div class="dot" data-target="projects"><span class="dot-label">Work</span></div>
+  <div class="dot" data-target="contact"><span class="dot-label">Contact</span></div>
+</nav>
+<!-- /HEADER / NAVIGATION -->
+
+  <main>
+
+    <!-- ==========================================================================
+         2. HERO SECTION
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-inner">
+        <!-- NOTE: .hero-label has no CSS anymore (removed as unused during a style.css
+             cleanup) — this span is currently dead markup, safe to delete whenever. -->
+        <span class="hero-label"></span>
+
+        <div class="typing-hero">
+          <div class="typing-container">
+            <span id="typed-text">JOSHUA STOLTZ</span><span class="cursor"></span>
+          </div>
+        </div>
+
+        <p class="hero-sub">Web Designer & Developer</p>
+
+        <p class="hero-tagline">
+          Building clean, fast websites for Minnesota small businesses.
+
+          <span class="hero-status">accepting select projects while completing AAS in Web Development.</span>
+        </p>
+
+      <div class="hero-cta">
+  <a href="client-questionnaire.html" class="btn-primary-custom"><span class="btn-prompt" aria-hidden="true">&gt;</span> Start a Project</a>
+<a href="#projects" class="btn-outline-custom">View My Work <span class="btn-down" aria-hidden="true">&darr;</span></a>
+</div>
+
+      </div>
+    </section>
+    <!-- /HERO SECTION -->
+
+<!-- ==========================================================================
+     3. ABOUT SECTION
+     ========================================================================== -->
+<section class="about-section" id="about">
+  <div class="about-container">
+
+    <div class="about-header">
+      <p class="section-label">// ABOUT</p>
+      <h2 class="section-title">Who I Am</h2>
+    </div>
+
+    <div class="about-grid">
+
+      <!-- Left Column: Photo & Site Checks -->
+      <div class="about-media">
+
+        <!-- Photo in a file window. The bar under it shows the image's alt text as code. -->
+        <figure class="about-image-wrapper">
+          <img src="images/headshot.webp" srcset="images/headshot-360.webp 360w, images/headshot-540.webp 540w, images/headshot.webp 720w" sizes="340px" alt="Joshua Stoltz" class="about-portrait" width="720" height="720" loading="lazy" decoding="async">
+          <figcaption class="about-caption" aria-hidden="true"><span class="cap-attr">alt</span><span class="cap-punct">=</span><span class="cap-str">"Joshua Stoltz"</span></figcaption>
+        </figure>
+
+        <!-- Site checks: boot up on scroll, click to expand -->
+        <div class="about-badges">
+          <p class="badge-title"># every site I build passes these</p>
+          <div class="badge-item">
+            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-1">
+              <span class="badge-text">Responsive on every device</span>
+              <span class="badge-status" aria-hidden="true">[ OK ]</span>
+            </button>
+            <p class="badge-detail" id="badge-detail-1" hidden>Tested at phone, tablet and desktop sizes (375px, 768px and 1440px) before launch.</p>
+          </div>
+          <div class="badge-item">
+            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-2">
+              <span class="badge-text">Hand-coded, no templates</span>
+              <span class="badge-status" aria-hidden="true">[ OK ]</span>
+            </button>
+            <p class="badge-detail" id="badge-detail-2" hidden>Written line by line in HTML, CSS and JavaScript. No Wix, no WordPress themes, no page builders.</p>
+          </div>
+          <div class="badge-item">
+            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-3">
+              <span class="badge-text">Local to Austin, MN</span>
+              <span class="badge-status" aria-hidden="true">[ OK ]</span>
+            </button>
+            <p class="badge-detail" id="badge-detail-3" hidden>Based right here in Austin. Happy to meet in person and talk through your project.</p>
+          </div>
+          <p class="badge-hint" aria-hidden="true">
+            <span><span class="badge-pass">3 passed</span>, 3 total</span>
+            <span>// tap a check for details</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Bio Copy -->
+      <div class="about-content">
+
+        <!-- Terminal intro: command types out, then the comment fades in -->
+        <div class="term-block">
+          <p class="term-prompt">
+            <span class="sr-only">Terminal command: open my about file</span>
+            <span aria-hidden="true"><span class="term-user">joshua@stoltz</span>:<span class="term-path">~</span>$
+            <span class="term-cmd" data-cmd="cat about.md">cat about.md</span><span class="term-caret"></span></span>
+          </p>
+          <p class="term-comment"># opening my about file... here's a quick intro ↓</p>
+        </div>
+
+        <!-- about.md: the "file" the command above prints out.
+             Each block below appears in turn once the command finishes typing. -->
+        <div class="md-out">
+
+          <p class="md-lead">
+            I'm Joshua Stoltz, a web designer and developer based in Austin, MN. I run Stoltz Web Design,
+            where I hand-code every site from scratch.
+          </p>
+
+          <!-- Split diff: left pane is what I skip, right pane is what you get.
+               The panes sit side by side and stack when the column gets narrow. -->
+          <div class="md-diff">
+            <div class="diff-pane">
+              <div class="diff-file"><span aria-hidden="true">--- </span>what I skip</div>
+              <ul class="diff-lines">
+                <li class="diff-del"><span class="diff-mark" aria-hidden="true">-</span><span>page builders</span></li>
+                <li class="diff-del"><span class="diff-mark" aria-hidden="true">-</span><span>bloated templates</span></li>
+              </ul>
+            </div>
+            <div class="diff-pane diff-pane--add">
+              <div class="diff-file"><span aria-hidden="true">+++ </span>what you get</div>
+              <ul class="diff-lines">
+                <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>clean HTML, CSS and JavaScript</span></li>
+                <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>built specifically for your business</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Two sections side by side; they stack when the column gets narrow -->
+          <div class="md-row">
+            <div class="md-block md-block--wide">
+              <h3 class="md-h">still in school, already building</h3>
+              <p>
+                I'm currently completing my AAS in Web Development at <strong>Riverland Community College</strong>
+                (expected <strong>May 2027</strong>), and I'm a <strong>Phi Theta Kappa</strong> honors member.
+                While I'm still in school, I'm already building real sites for real Minnesota small businesses —
+                which means you get someone who's actively learning the latest best practices and genuinely
+                invested in getting your project right.
+              </p>
+            </div>
+
+            <div class="md-block">
+              <h3 class="md-h">off the clock</h3>
+              <p>
+                When I'm not coding, I'm usually deep into game development or exploring Unity/XR projects — that
+                same problem-solving mindset carries straight into how I approach building websites.
+              </p>
+            </div>
+          </div>
+
+        </div><!-- /.md-out -->
+
+ <!-- Interactive code card: file tabs + plain-English tooltips -->
+<div class="code-card" id="codeCard">
+  <div class="code-card-bar">
+    <div class="window-controls">
+      <span class="control close" title="Close"></span>
+      <span class="control minimize" title="Minimize"></span>
+      <span class="control maximize" title="Maximize"></span>
+    </div>
+
+    <div class="code-tabs" role="tablist" aria-label="About files">
+      <button class="code-tab is-active" role="tab" id="tab-whoami" aria-selected="true" aria-controls="file-whoami">
+        <span class="tab-icon">{}</span>
+        <span class="tab-name">whoami.json</span>
+      </button>
+      <button class="code-tab" role="tab" id="tab-stack" aria-selected="false" aria-controls="file-stack" tabindex="-1">
+        <span class="tab-icon">{}</span>
+        <span class="tab-name">stack.json</span>
+      </button>
+      <button class="code-tab" role="tab" id="tab-now" aria-selected="false" aria-controls="file-now" tabindex="-1">
+        <span class="tab-icon">{}</span>
+        <span class="tab-name">now.json</span>
+      </button>
+    </div>
+
+    <!-- Copy Button -->
+    <button class="copy-btn" id="copyJsonBtn" type="button" aria-label="Copy JSON file">
+      <svg class="copy-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span class="copy-text">Copy</span>
+    </button>
+  </div>
+
+  <!-- FILE 1: whoami.json -->
+  <pre class="code-file is-active" id="file-whoami" role="tabpanel" aria-labelledby="tab-whoami"><code><span class="line"><span class="ln">1</span><span class="p">{</span></span>
+<span class="line"><span class="ln">2</span>  <span class="k" tabindex="0" data-tip="That's me.">"name"</span><span class="p">:</span> <span class="s">"Joshua Stoltz"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">3</span>  <span class="k" tabindex="0" data-tip="Local. We can meet in person.">"location"</span><span class="p">:</span> <span class="s">"Austin, MN"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">4</span>  <span class="k" tabindex="0" data-tip="The three languages every website is built with.">"stack"</span><span class="p">:</span> <span class="p">[</span><span class="s">"HTML"</span><span class="p">,</span> <span class="s">"CSS"</span><span class="p">,</span> <span class="s">"JS"</span><span class="p">],</span></span>
+<span class="line"><span class="ln">5</span>  <span class="k" tabindex="0" data-tip="No page builders or bloated add-ons. Everything is written by hand.">"frameworks"</span><span class="p">:</span> <span class="n null-val">null</span><span class="p">,</span></span>
+<span class="line"><span class="ln">6</span>  <span class="k" tabindex="0" data-tip="Yes, I'm taking new clients. Click true to get in touch.">"accepting_projects"</span><span class="p">:</span> <a href="#contact" class="n code-live">true<span class="pulse-dot" title="Available now"></span></a></span>
+<span class="line"><span class="ln">7</span><span class="p">}</span></span></code></pre>
+
+  <!-- FILE 2: stack.json -->
+  <pre class="code-file" id="file-stack" role="tabpanel" aria-labelledby="tab-stack" hidden><code><span class="line"><span class="ln">1</span><span class="p">{</span></span>
+<span class="line"><span class="ln">2</span>  <span class="k" tabindex="0" data-tip="Every site is designed first, so you see it before it's built.">"design"</span><span class="p">:</span> <span class="s">"Figma"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">3</span>  <span class="k" tabindex="0" data-tip="The code behind your site, written from scratch.">"code"</span><span class="p">:</span> <span class="p">[</span><span class="s">"HTML5"</span><span class="p">,</span> <span class="s">"CSS3"</span><span class="p">,</span> <span class="s">"JavaScript"</span><span class="p">],</span></span>
+<span class="line"><span class="ln">4</span>  <span class="k" tabindex="0" data-tip="Where your site lives online. Fast and secure.">"hosting"</span><span class="p">:</span> <span class="s">"Netlify"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">5</span>  <span class="k" tabindex="0" data-tip="Contact forms that send straight to your email.">"forms"</span><span class="p">:</span> <span class="s">"Formspree"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">6</span>  <span class="k" tabindex="0" data-tip="Tested at phone, tablet and desktop sizes.">"breakpoints"</span><span class="p">:</span> <span class="p">[</span><span class="n num-val">375</span><span class="p">,</span> <span class="n num-val">768</span><span class="p">,</span> <span class="n num-val">1440</span><span class="p">]</span></span>
+<span class="line"><span class="ln">7</span><span class="p">}</span></span></code></pre>
+
+  <!-- FILE 3: now.json -->
+  <pre class="code-file" id="file-now" role="tabpanel" aria-labelledby="tab-now" hidden><code><span class="line"><span class="ln">1</span><span class="p">{</span></span>
+<span class="line"><span class="ln">2</span>  <span class="k" tabindex="0" data-tip="My current degree program.">"studying"</span><span class="p">:</span> <span class="s">"AAS Web Development"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">3</span>  <span class="k" tabindex="0" data-tip="Riverland Community College.">"school"</span><span class="p">:</span> <span class="s">"Riverland CC"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">4</span>  <span class="k" tabindex="0" data-tip="Expected graduation.">"graduating"</span><span class="p">:</span> <span class="s">"May 2027"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">5</span>  <span class="k" tabindex="0" data-tip="Academic honor society for top students.">"honors"</span><span class="p">:</span> <span class="s">"Phi Theta Kappa"</span><span class="p">,</span></span>
+<span class="line"><span class="ln">6</span>  <span class="k" tabindex="0" data-tip="What I build when I'm not building websites.">"side_quest"</span><span class="p">:</span> <span class="s">"Unity / XR games"</span></span>
+<span class="line"><span class="ln">7</span><span class="p">}</span></span></code></pre>
+
+  <p class="code-hint" aria-live="polite">
+    <span class="hint-icon">i</span>
+    <span>Hover or tap a key to see what it means.</span>
+  </p>
+</div><!-- /.code-card -->
+
+      </div><!-- /.about-content -->
+    </div><!-- /.about-grid -->
+  </div><!-- /.about-container -->
+</section>
+<!-- /ABOUT SECTION -->
+
+<section class="services-section" id="services">
+  <div class="section-heading">
+    <p class="section-label">// WHAT I DO</p>
+    <h2 class="section-title">Services</h2>
+    <p class="services-intro">Your website, plus the logo and printed pieces that go with it, all designed to look like one business.</p>
+  </div>
+
+  <!-- The kit: a real example of each kind of work -->
+  <div class="kit">
+    <figure class="kit-item">
+      <div class="kit-browser">
+        <img src="zm-fullpage.webp" alt="The Z&amp;M Services website" width="800" height="1113" loading="lazy" decoding="async">
+      </div>
+      <figcaption>Websites</figcaption>
+    </figure>
+
+    <figure class="kit-item">
+      <img class="kit-shot" src="images/service-google.webp" alt="Example of a Google Business Profile for Stoltz Web Design" width="460" height="400" loading="lazy" decoding="async">
+      <figcaption>Google Profiles</figcaption>
+    </figure>
+
+    <figure class="kit-item">
+      <img class="kit-shot" src="images/service-social.webp" alt="Example of a social media page with a matching cover and profile picture" width="460" height="400" loading="lazy" decoding="async">
+      <figcaption>Social Graphics</figcaption>
+    </figure>
+
+    <figure class="kit-item">
+      <div class="kit-logo">
+        <img src="images/stoltzwebdesign-logo-448.webp" alt="The Stoltz Web Design logo" width="448" height="224" loading="lazy" decoding="async">
+      </div>
+      <figcaption>Logos</figcaption>
+    </figure>
+
+    <figure class="kit-item">
+      <img class="kit-flyer" src="images/service-flyer.webp" alt="A Stoltz Web Design flyer" width="450" height="579" loading="lazy" decoding="async">
+      <figcaption>Flyers</figcaption>
+    </figure>
+
+    <figure class="kit-item">
+      <div class="kit-cards">
+        <img src="images/service-card-front.webp" alt="" width="520" height="312" loading="lazy" decoding="async">
+        <img src="images/service-card-back.webp" alt="A Stoltz Web Design business card" width="520" height="312" loading="lazy" decoding="async">
+      </div>
+      <figcaption>Business Cards</figcaption>
+    </figure>
+  </div>
+
+  <!-- The full list, in two groups -->
+  <div class="svc-lists">
+    <div class="svc-list">
+      <h3 class="md-h">on screen</h3>
+      <ul class="diff-lines">
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Custom web design</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Web development</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Responsive design</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Hosting &amp; deployment</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Google Business Profile setup</span></li>
+      </ul>
+    </div>
+
+    <div class="svc-list">
+      <h3 class="md-h">print and branding</h3>
+      <ul class="diff-lines">
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Logo design</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Flyers</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Business cards</span></li>
+        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Social media graphics</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- /SERVICES SECTION -->
+<!-- ==========================================================================
+     4b. PRICING SECTION
+     ========================================================================== -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-heading">
+  <div class="pricing__container">
+
+    <div class="pricing__header">
+      <p class="pricing__eyebrow">// Pricing</p>
+      <h2 class="pricing__heading" id="pricing-heading">Simple, honest pricing</h2>
+      <p class="pricing__intro">
+        Every site is designed from scratch in Figma and hand-coded by me. No templates,
+        no page builders, no monthly platform fees. Here's exactly what you get, so there
+        are no surprises.
+      </p>
+    </div>
+
+    <div class="pricing__grid">
+
+      <!-- ONE-PAGE SITE -->
+      <article class="pricing__card">
+        <h3 class="pricing__name">One-Page Site</h3>
+        <p class="pricing__price">
+          <span class="pricing__from">Starting at</span>
+          <span class="pricing__amount">$600</span>
+        </p>
+        <p class="pricing__fit">
+          <strong>Best for:</strong> new businesses, a single service, or anyone who needs
+          a professional online presence without a big budget.
+        </p>
+        <ul class="pricing__list">
+          <li><strong>A custom design made for your brand</strong>, not a template someone else is also using</li>
+          <li><strong>One scrolling page</strong> with everything a customer needs: who you are, what you offer, and how to reach you</li>
+          <li><strong>Works on every device.</strong> Looks right on phones, tablets and computers</li>
+          <li><strong>A contact form</strong> that sends messages straight to your email</li>
+          <li><strong>Google basics</strong> so people searching for your business can find you</li>
+          <li><strong>Domain and hosting set up for you.</strong> You don't touch anything technical</li>
+          <li><strong>2 rounds of revisions</strong> to get it just right</li>
+        </ul>
+        <a class="pricing__btn pricing__btn--outline" href="#contact">Get a free quote</a>
+      </article>
+
+      <!-- MULTI-PAGE SITE (featured) -->
+      <article class="pricing__card pricing__card--featured">
+        <p class="pricing__badge">Most popular</p>
+        <h3 class="pricing__name">Multi-Page Site</h3>
+        <p class="pricing__price">
+          <span class="pricing__from">Starting at</span>
+          <span class="pricing__amount">$1,500</span>
+        </p>
+        <p class="pricing__fit">
+          <strong>Best for:</strong> established local businesses that want room to show off
+          their services, their work and their story.
+        </p>
+        <p class="pricing__plus">Everything in the One-Page Site, plus:</p>
+        <ul class="pricing__list">
+          <li><strong>Up to 5 pages</strong>, like Home, About, Services, Gallery and Contact</li>
+          <li><strong>A photo gallery</strong> or before-and-after showcase of your work</li>
+          <li><strong>Google Maps and social media links</strong> so customers can find and follow you</li>
+          <li><strong>Link previews</strong>, so your site shows a clean image and title when shared on Facebook or in a text</li>
+          <li><strong>Privacy policy, terms and a custom "page not found" page</strong> so your site looks finished everywhere</li>
+          <li><strong>3 rounds of revisions</strong></li>
+        </ul>
+        <a class="pricing__btn" href="#contact">Get a free quote</a>
+      </article>
+
+      <!-- CARE PLAN -->
+      <article class="pricing__card">
+        <h3 class="pricing__name">Care Plan</h3>
+        <p class="pricing__price">
+          <span class="pricing__amount">$50</span>
+          <span class="pricing__per">/ month</span>
+        </p>
+        <p class="pricing__fit">
+          <strong>Best for:</strong> business owners who'd rather run their business than
+          worry about their website. Available for any site I build.
+        </p>
+        <ul class="pricing__list">
+          <li><strong>Hosting included.</strong> I keep your site online and running fast</li>
+          <li><strong>Small updates each month</strong>, like new hours, prices, photos or a menu change. Just send me a message</li>
+          <li><strong>Security kept current</strong>, including the SSL certificate that shows the padlock in the browser</li>
+          <li><strong>Monthly check-up</strong> to make sure your forms and links still work</li>
+          <li><strong>A real person to call</strong>, not a support ticket, when you need help</li>
+        </ul>
+        <a class="pricing__btn pricing__btn--outline" href="#contact">Ask about the Care Plan</a>
+      </article>
+
+    </div>
+
+    <!-- What "starting at" means -->
+    <div class="pricing__note">
+      <h3 class="pricing__note-heading">What does "starting at" mean?</h3>
+      <p>
+        Every business is different. Things like online booking, extra pages, or help writing
+        your website's text can change the price. Before any work starts, you'll get a
+        <strong>fixed quote in writing</strong>, so you'll know the full cost up front.
+        No hourly billing, no surprise invoices.
+      </p>
+    </div>
+
+    <!-- Print and branding work has no set price list -->
+    <div class="pricing__note">
+      <h3 class="pricing__note-heading">What about logos, flyers and business cards?</h3>
+      <p>
+        Logo design, flyers, business cards, social media graphics and Google Business Profile
+        setup are quoted per project. Tell me what you need and you'll get a
+        <strong>fixed price in writing</strong> before any work starts.
+        <a href="#contact">Ask for a quote</a>.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- /PRICING SECTION -->
+
+<!-- ==========================================================================
+     5. FEATURED CLIENTS / PORTFOLIO SECTION
+     ========================================================================== -->
+<section class="clients-section" id="projects">
+  <div class="section-heading">
+    <p class="section-label">// FEATURED WORK</p>
+    <h2 class="section-title">Featured Clients</h2>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Client 1: Z&M Services -->
+    <div class="card card--zm">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <img src="zm-fullpage.webp" alt="Full-page screenshot of the Z&amp;M Services website" width="800" height="1113" loading="lazy" decoding="async">
+      </div>
+      <span class="client-label">CLIENT #01</span>
+      <h3 class="client-name">Z &amp; M SERVICES</h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">Landscaping, mowing, junk removal and more.</p>
+      <a href="zm-project.html" class="btn-view-project" aria-label="View project: Z&amp;M Services case study">VIEW PROJECT <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <!-- Client 2: SEMSCA -->
+    <div class="card card--semsca">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <img src="semsca-fullpage.webp" alt="Full-page screenshot of the SEMSCA website" width="800" height="1498" loading="lazy" decoding="async">
+      </div>
+      <span class="client-label">CLIENT #02</span>
+      <h3 class="client-name">SEMSCA</h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">Southeastern Minnesota Saddle Club Association</p>
+      <a href="semsca.html" class="btn-view-project" aria-label="View project: SEMSCA case study">VIEW PROJECT <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <!-- Client 3: Open slot / call to action -->
+    <div class="card card--upcoming">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
+      </div>
+      <span class="client-label">CLIENT #03</span>
+      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">This spot is open. Your business could be client #03.</p>
+      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+    
+    <!-- Client 4: Open slot / call to action -->
+    <div class="card card--upcoming">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
+      </div>
+      <span class="client-label">CLIENT #04</span>
+      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">Another open spot. Your business could be client #04.</p>
+      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <!-- Client 5: Open slot / call to action -->
+    <div class="card card--upcoming">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
+      </div>
+      <span class="client-label">CLIENT #05</span>
+      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">Another open spot. Your business could be client #05.</p>
+      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <!-- Client 6: Open slot / call to action -->
+    <div class="card card--upcoming">
+      <div class="card-preview">
+        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
+      </div>
+      <span class="client-label">CLIENT #06</span>
+      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
+      <p class="project-type">WEBSITE</p>
+      <div class="tags">
+        <span class="tag">WEB DEVELOPMENT</span>
+        <span class="tag">CUSTOM DESIGN</span>
+      </div>
+      <p class="description">Another open spot. Your business could be client #06.</p>
+      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+<!-- /FEATURED CLIENTS SECTION -->
+
+<!-- ==========================================================================
+     5. CONTACT SECTION (START A PROJECT)
+     ========================================================================== -->
+<section class="start-project" id="contact" aria-labelledby="sp-title">
+  <div class="sp-inner">
+
+    <!-- 5a. Heading + intro -->
+    <div class="sp-header">
+      <div class="section-heading">
+        <p class="section-label">// LET'S BUILD SOMETHING</p>
+        <h2 class="section-title" id="sp-title">START A PROJECT</h2>
+      </div>
+      <p class="sp-intro">Have a project in mind? Fill out the quick message form here, or fast-track your project scope with the full intake form.</p>
+    </header>
+
+    <!-- 5b. Timeline. Step 01 is current while the form is open; script.js fills
+         the line toward 02 as the required fields are completed. -->
+    <ol class="sp-steps" role="list">
+      <li class="sp-step is-current">
+        <div class="sp-step-marker" aria-hidden="true">
+          <span class="sp-step-num">
+            <span class="sp-step-digits">01</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          </span>
+          <span class="sp-step-line"><span class="sp-step-fill"></span></span>
+        </div>
+        <div class="sp-step-text">
+          <h3 class="sp-step-title">FILL OUT FORM</h3>
+          <p>Tell me about your business goals and style preferences.</p>
+        </div>
+      </li>
+      <li class="sp-step">
+        <div class="sp-step-marker" aria-hidden="true">
+          <span class="sp-step-num"><span class="sp-step-digits">02</span></span>
+          <span class="sp-step-line"></span>
+        </div>
+        <div class="sp-step-text">
+          <h3 class="sp-step-title">24-HR REVIEW</h3>
+          <p>I'll review your scope and outline site structure options.</p>
+        </div>
+      </li>
+      <li class="sp-step">
+        <div class="sp-step-marker" aria-hidden="true">
+          <span class="sp-step-num"><span class="sp-step-digits">03</span></span>
+          <span class="sp-step-line"></span>
+        </div>
+        <div class="sp-step-text">
+          <h3 class="sp-step-title">STRATEGY CALL</h3>
+          <p>We discuss custom pricing, timeline, and kick off the design.</p>
+        </div>
+      </li>
+    </ol>
+
+    <!-- 5c. Two-column container: form (left) + fast-track card and contact info (right) -->
+    <div class="sp-body">
+
+      <!-- Left Column: Formspree Contact Form -->
+      <div class="sp-form-wrap">
+        <form class="sp-form" id="contactForm" action="https://formspree.io/f/maqzoybq" method="POST">
+          <div class="sp-field-row">
+            <div class="sp-field">
+              <label for="name">Name <span class="sp-required" aria-hidden="true">*</span></label>
+              <input class="sp-input" type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name" required
+                     aria-describedby="name-error" data-missing="Please enter your name." />
+              <p class="sp-error" id="name-error"></p>
+            </div>
+            <div class="sp-field">
+              <label for="phone">Phone <span class="sp-optional">(optional)</span></label>
+              <input class="sp-input" type="tel" id="phone" name="phone" placeholder="(507) 000-0000" autocomplete="tel" />
+              <p class="sp-error"></p>
+            </div>
+          </div>
+
+          <div class="sp-field">
+            <label for="email">Email <span class="sp-required" aria-hidden="true">*</span></label>
+            <input class="sp-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required
+                   aria-describedby="email-error" data-missing="Please enter your email." data-invalid="That email address looks incomplete." />
+            <p class="sp-error" id="email-error"></p>
+          </div>
+
+          <div class="sp-field">
+            <label for="service">Service Needed <span class="sp-required" aria-hidden="true">*</span></label>
+            <select class="sp-input" id="service" name="service" required
+                    aria-describedby="service-error" data-missing="Please choose a service.">
+              <option value="" disabled selected>Select a service...</option>
+              <option value="new-website">New Website</option>
+              <option value="redesign">Website Redesign</option>
+              <option value="landing-page">Landing Page</option>
+              <option value="maintenance">Website Maintenance</option>
+              <option value="seo">SEO Optimization</option>
+              <option value="logo-design">Logo Design</option>
+              <option value="print-design">Flyers or Business Cards</option>
+              <option value="social-graphics">Social Media Graphics</option>
+              <option value="google-business-profile">Google Business Profile Setup</option>
+              <option value="other">Other / Not Sure Yet</option>
+            </select>
+            <p class="sp-error" id="service-error"></p>
+          </div>
+
+          <div class="sp-field">
+            <label for="message">Project Details <span class="sp-required" aria-hidden="true">*</span></label>
+            <textarea class="sp-input" id="message" name="message" placeholder="Tell me about your business and what you're looking for..." required
+                      aria-describedby="message-error" data-missing="Please add a few details about your project."></textarea>
+            <p class="sp-error" id="message-error"></p>
+          </div>
+
+          <!-- Honeypot: hidden from people, bots fill it in, Formspree drops those submissions -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="sp-actions">
+            <button type="submit" class="sp-btn">
+              <span class="sp-btn-label">Send Message</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </button>
+            <p class="sp-count"><span class="sp-required" aria-hidden="true">*</span> Required<span class="sp-count-value" aria-live="polite"></span></p>
+          </div>
+
+          <p class="sp-status" role="alert" data-message="That didn't send. Please try again, or email hello@stoltzwebdesign.com."></p>
+        </form>
+
+        <!-- Shown by script.js after a successful send -->
+        <div class="sp-sent" role="status" hidden>
+          <span class="sp-sent-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          </span>
+          <h3 class="sp-sent-title" tabindex="-1">MESSAGE SENT</h3>
+          <p>Thanks, <span class="sp-sent-name">there</span>. I'll review your scope and outline site structure options within 24 hours.</p>
+          <button type="button" class="sp-btn-ghost sp-sent-reset">Send another message</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Fast-track card + Contact Info -->
+      <aside class="sp-aside">
+        <div class="sp-fasttrack">
+          <h3 class="sp-kicker">Fast-track it</h3>
+          <p>Fill out the Full Pre-Flight Intake Form to fast-track your project scope.</p>
+          <a href="client-questionnaire.html" class="sp-btn-ghost">
+            Pre-Flight Intake Form
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+
+        <div class="sp-contact">
+          <h3 class="sp-kicker">Reach me directly</h3>
+          <ul class="sp-contact-list" role="list">
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+              <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a>
+            </li>
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+              <span>Austin, MN</span>
+            </li>
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+              <span>Responds within 24 hours</span>
+            </li>
+          </ul>
+          <!-- TODO: social icon links go here (same markup pattern as footer-socials below) -->
+        </div>
+      </aside>
+
+    </div><!-- /.sp-body -->
+
+  </div>
+</section>
+<!-- /CONTACT SECTION -->
+
+<!-- ==========================================================================
+     5b. FAQ SECTION
+     Place between FEATURED CLIENTS and CONTACT.
+     ========================================================================== -->
+<section class="faq-section" id="faq" aria-labelledby="faq-heading">
+  <div class="faq-container">
+
+    <div class="section-heading">
+      <p class="section-label">// FAQ</p>
+      <h2 class="section-title" id="faq-heading">Common Questions</h2>
+      <p class="faq-intro">New to hiring a web designer? Here are the questions people ask me most.</p>
+    </div>
+
+    <!-- Reader window. From 769px up the questions sit on the left and the open
+         answer shows on the right; on phones it is the plain accordion. -->
+    <div class="faq-reader">
+      <div class="faq-bar" aria-hidden="true">
+        <span class="faq-bar-path">~/faq</span>
+        <span class="faq-bar-count">01 / 09</span>
+      </div>
+
+      <div class="faq-body">
+        <div class="faq-list">
+
+          <details class="faq-item" name="faq" open>
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">01</span>
+              <span class="faq-q">How much does a website cost?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>One-page sites start at <strong>$600</strong> and multi-page sites (up to 5 pages) start at <strong>$1,500</strong>. Before any work begins you get a <strong>fixed quote in writing</strong>, so you know the full cost up front. No hourly billing, no surprise invoices. <a href="#pricing">See full pricing</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">02</span>
+              <span class="faq-q">How long does it take to build my site?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Most one-page sites take about <strong>2–3 weeks</strong>, and multi-page sites about <strong>4–6 weeks</strong>. The biggest factor is how quickly I get your photos, logo and text. Once I have those, things move fast. You'll get a timeline with your quote.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">03</span>
+              <span class="faq-q">What do I need to give you?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Your logo (if you have one), photos of your work or business, and the basics: what you offer, where you serve, and how customers can reach you. The <a href="client-questionnaire.html">intake form</a> walks you through all of it. If you'd like help writing your website's text, I can quote that too.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">04</span>
+              <span class="faq-q">Are there monthly fees?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>No platform fees. You're not locked into Wix or Squarespace. The optional <strong>Care Plan is $50/month</strong> and covers hosting, security, monthly check-ups and small updates. If you skip it, your only ongoing cost is your domain name, usually around $15–20 a year.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">05</span>
+              <span class="faq-q">Can I update the website myself?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Every site is hand-coded, which keeps it fast and secure, but it doesn't come with a drag-and-drop editor. Most owners just send me a quick message instead: new hours, prices, photos or a menu change are included in the Care Plan. Bigger changes get a quick quote.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">06</span>
+              <span class="faq-q">Do I own my website?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. Once the project is paid in full, the site and its files are yours, and your domain is registered in your name. If you ever want to move on, I'll hand everything over.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">07</span>
+              <span class="faq-q">Will my site show up on Google?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Every site is built with the Google basics: proper page titles, descriptions, fast load times and mobile-friendly layouts, so people searching for your business can find you. Nobody can honestly guarantee a #1 ranking, but a clean, fast site gives you a strong start.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">08</span>
+              <span class="faq-q">How does payment work?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>A <strong>50% deposit</strong> reserves your spot and starts the design. The remaining 50% is due when you approve the finished site, before it goes live. Everything is laid out in your written quote first, so there are no surprises.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="faq">
+            <summary class="faq-question">
+              <span class="faq-num" aria-hidden="true">09</span>
+              <span class="faq-q">You're still in school. Is that a problem?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>I'm finishing my AAS in Web Development at Riverland Community College and already building sites for Minnesota businesses like <a href="zm-project.html">Z&amp;M Services</a> and <a href="semsca.html">SEMSCA</a>. You work directly with me from first call to launch, and I only take on a few projects at a time so each one gets full attention.</p>
+            </div>
+          </details>
+
+        </div><!-- /.faq-list -->
+
+        <!-- Previous / next (desktop reader only) -->
+        <div class="faq-nav">
+          <button type="button" class="faq-nav-btn" data-step="-1" aria-label="Previous question"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+          <button type="button" class="faq-nav-btn" data-step="1" aria-label="Next question"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div><!-- /.faq-body -->
+    </div><!-- /.faq-reader -->
+
+    <div class="faq-cta">
+      <p>Still have a question?</p>
+      <a href="#contact" class="faq-cta-btn"><span class="faq-prompt">$</span> ask --question <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+  </div>
+</section>
+<!-- /FAQ SECTION -->
+  </main>
+  </main>
+
+<!-- ==========================================================================
+     6. FOOTER
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- 6a. Statement: the mission line, set large -->
+    <p class="footer-statement">
+      <span>No templates.</span>
+      <span>No page builders.</span>
+      <span class="footer-statement-accent">Just code built for your business.</span>
+    </p>
+
+    <div class="footer-grid">
+
+      <!-- 6b. Brand column: logo, tagline, credential -->
+      <div class="footer-brand">
+        <img src="images/logo-footer.webp" alt="Stoltz web design logo" class="footer-logo-img" width="720" height="720" loading="lazy" decoding="async">
+        <div class="footer-brand-text">
+          <p class="footer-tagline">Hand-coded sites for small businesses in Austin, MN.</p>
+          <p class="footer-badge">AAS Web Development, Riverland CC</p>
+        </div>
+      </div>
+
+      <!-- 6c. Site links: every section, in page order -->
+      <nav class="footer-nav" aria-label="Footer">
+        <p class="footer-label">// Site</p>
+        <div class="footer-nav-list">
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#projects">Featured clients</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <!-- 6d. Contact column: email, address, social icons -->
+      <div class="footer-contact">
+        <p class="footer-label">// Contact</p>
+        <a href="mailto:hello@stoltzwebdesign.com" class="footer-contact-item">hello@stoltzwebdesign.com</a>
+        <p class="footer-contact-item">Austin, MN 55912</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/stoltzwebdesign" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/joshua-stoltz-bab0a749/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/8joshstol0329/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.footer-grid -->
+
+    <!-- 6e. Bottom bar: copyright + back-to-top -->
+    <div class="footer-bottom">
+      <p>&copy;2026 stoltzwebdesign. All rights reserved.</p>
+      <a href="#top" class="footer-top-link">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+
+  </div>
+</footer>
+<!-- /FOOTER -->
+
+<script src="js/script.js"></script>
+ 
+</body>
+</html>
