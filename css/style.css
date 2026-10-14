@@ -927,6 +927,16 @@ header.is-scrolled .navbar-brand img { scale: 0.82; }
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+
+.hero-headline{
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  line-height: 1.2;
+  color: var(--color-white);
+}
+
 /* ---------- Buttons ---------- */
 .hero-cta {
   display: flex;
