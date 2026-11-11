@@ -674,6 +674,26 @@
       });
     }
 
+    // Get the token early: start fetching it the first time someone clicks into
+    // the form, so it's usually ready by the time they hit Send. Tokens expire
+    // after 2 minutes, so one older than 90 seconds is replaced with a fresh one.
+    // Each token can only be used once, so it's cleared after every send.
+    const TOKEN_MAX_AGE = 90 * 1000;
+    let tokenPromise = null;
+    let tokenTime = 0;
+
+    const prefetchToken = () => {
+      if (tokenPromise && Date.now() - tokenTime < TOKEN_MAX_AGE) return tokenPromise;
+      tokenTime = Date.now();
+      tokenPromise = getRecaptchaToken().catch(err => {
+        tokenPromise = null;           // failed (e.g. script still loading): try again on Send
+        throw err;
+      });
+      return tokenPromise;
+    };
+
+    form.addEventListener('focusin', () => { prefetchToken().catch(() => {}); });
+
     form.addEventListener('submit', async e => {
       e.preventDefault();
 
@@ -682,7 +702,9 @@
 
       try {
         const formData = new FormData(form);
-        formData.append('g-recaptcha-response', await getRecaptchaToken());
+        const token = await prefetchToken();
+        tokenPromise = null;           // used up; the next send gets a new one
+        formData.append('g-recaptcha-response', token);
         const res = await fetch(form.action, {
           method: 'POST',
           body: formData,
