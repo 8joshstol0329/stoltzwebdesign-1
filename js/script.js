@@ -119,32 +119,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ==========================================================================
-     NAV: HAMBURGER
-     ========================================================================== */
-
-  const toggler = document.querySelector('.navbar-toggler');
-  const collapse = document.querySelector('.navbar-collapse');
-
-  if (toggler && collapse) {
-    toggler.addEventListener('click', () => {
-      const isOpen = collapse.classList.toggle('open');
-      toggler.setAttribute('aria-expanded', isOpen);
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        collapse.classList.remove('open');
-        toggler.setAttribute('aria-expanded', false);
-      });
-    });
-  }
-
-  /* ==========================================================================
-     NAV: SCROLLED STATE + TERMINAL PATH
+     NAV: SCROLLED STATE, CURRENT SECTION, PHONE/TABLET MENU
      ========================================================================== */
 
   const siteHeader = document.querySelector('header');
-  const navbar = document.querySelector('.navbar');
+  const navMenu = document.getElementById('navMenu');
 
   // Glassy, smaller header once you scroll past the top
   if (siteHeader) {
@@ -153,20 +132,25 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll();
   }
 
-  // joshua@stoltz:~/section$ that follows you down the page
-  if (navbar) {
-    const pathNames = { hero: '', about: 'about', services: 'services', pricing: 'pricing', projects: 'work', faq: 'faq', contact: 'contact' };
+  // Where you are: lights up the matching link and updates the terminal path
+  // (the tab under the links on desktop, the menu's title bar on phones)
+  if (navMenu) {
+    const pathNames = { hero: '', about: 'about', services: 'services', work: 'work', pricing: 'pricing', faq: 'faq', contact: 'contact' };
+    const links = Array.from(navMenu.querySelectorAll('.nav-links .nav-link'));
+    const menuDir = navMenu.querySelector('.nav-menu-bar .nav-path-dir');
+
+    // Desktop tab: joshua@stoltz:~/services$ (shown once you're past the hero)
     const navPath = document.createElement('div');
     navPath.className = 'nav-path';
     navPath.setAttribute('aria-hidden', 'true');
-    navPath.innerHTML =
-  '<div class="nav-path-bar"><span class="nav-path-dots"></span>you are here</div>' +
-  '<div class="nav-path-line"><span class="nav-path-user">joshua@stoltz</span>:<span class="nav-path-dir">~</span>$<span class="nav-path-caret"></span></div>';
-    navbar.append(navPath);
+    navPath.innerHTML = '<span class="nav-path-user">joshua@stoltz</span>:<span class="nav-path-dir">~</span>$<span class="nav-path-caret"></span>';
+    navMenu.append(navPath);
     const dir = navPath.querySelector('.nav-path-dir');
     let current = '~';
 
     const setPath = target => {
+      if (menuDir) menuDir.textContent = target;
+      navPath.classList.toggle('is-showing', target !== '~');
       if (target === current) return;
       current = target;
       clearTimeout(dir._t);
@@ -185,11 +169,22 @@ document.addEventListener('DOMContentLoaded', function () {
       erase();
     };
 
+    const setActive = id => {
+      links.forEach(link => {
+        const on = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('is-active', on);
+        if (on) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const name = pathNames[entry.target.id];
+        const id = entry.target.id;
+        const name = pathNames[id];
         setPath(name ? `~/${name}` : '~');
+        setActive(id);
       });
     }, { rootMargin: '-45% 0px -50% 0px' });   // the section crossing the middle of the screen
 
@@ -197,6 +192,31 @@ document.addEventListener('DOMContentLoaded', function () {
       .map(id => document.getElementById(id))
       .filter(Boolean)
       .forEach(sec => sectionObserver.observe(sec));
+
+    // Phone/tablet menu: the >_ button opens it; a link, Esc, a tap outside
+    // or widening to desktop closes it
+    const toggle = document.querySelector('.nav-toggle');
+    if (toggle) {
+      const setOpen = open => {
+        navMenu.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      };
+      const isOpen = () => navMenu.classList.contains('is-open');
+
+      toggle.addEventListener('click', () => setOpen(!isOpen()));
+      navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && isOpen()) {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+      document.addEventListener('click', e => {
+        if (isOpen() && !navMenu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+      });
+      window.matchMedia('(min-width: 992px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
+    }
   }
 
   /* ==========================================================================
@@ -238,255 +258,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ==========================================================================
-     ABOUT
-     ========================================================================== */
-
-  /* ---------- Feature checks: [ .. ] spinner, then [ OK ]; click for details ---------- */
-  const badgeBox = document.querySelector('.about-badges');
-  if (badgeBox) {
-    const items = Array.from(badgeBox.querySelectorAll('.badge-item'));
-    const hint = badgeBox.querySelector('.badge-hint');
-    const spin = ['|', '/', '-', '\\'];
-
-    // Spinner inside the brackets, then flip to OK with a flash
-    const runCheck = (status, duration) => new Promise(done => {
-      if (!status) return done();
-      if (reduceMotion) { status.textContent = '[ OK ]'; return done(); }
-      clearInterval(status._spin);
-      status.classList.remove('is-ok');
-      status.classList.add('is-checking');
-      let f = 0;
-      status._spin = setInterval(() => { status.textContent = `[ ${spin[f++ % 4]}  ]`; }, 80);
-      setTimeout(() => {
-        clearInterval(status._spin);
-        status.textContent = '[ OK ]';
-        status.classList.remove('is-checking');
-        void status.offsetWidth;
-        status.classList.add('is-ok');
-        done();
-      }, duration);
-    });
-
-    // Boot sequence when the badges scroll into view
-    onVisible(badgeBox, async () => {
-      for (const item of items) {
-        item.classList.add('booted');
-        await runCheck(item.querySelector('.badge-status'), 450);
-      }
-      if (hint) hint.classList.add('booted');
-    }, 0.4);
-
-    // Click / tap / Enter: re-run the check and show or hide the detail
-    items.forEach(item => {
-      const btn = item.querySelector('.badge');
-      const detail = item.querySelector('.badge-detail');
-      if (!btn || !detail) return;
-      btn.addEventListener('click', () => {
-        const open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        detail.hidden = open;
-        if (!open) runCheck(btn.querySelector('.badge-status'), 300);
-      });
-    });
-  }
-
-  // Terminal command types out, then the plain-English comment appears.
-  // The "done" class is also what lets the bio under it print in (see .md-out in style.css).
-  const termBlock = document.querySelector('.term-block');
-  const termCmd = document.querySelector('.term-cmd');
-  if (termBlock && termCmd) {
-    const cmd = termCmd.dataset.cmd;
-    if (reduceMotion) {
-      termBlock.classList.add('done');
-    } else {
-      let started = false;
-      termCmd.textContent = '';
-      onVisible(termBlock, () => {
-        if (started) return;
-        started = true;
-        let i = 0;
-        const type = () => {
-          termCmd.textContent = cmd.slice(0, ++i);
-          if (i < cmd.length) setTimeout(type, 70);
-          else setTimeout(() => termBlock.classList.add('done'), 300);
-        };
-        setTimeout(type, 400);
-      }, 0.6);
-
-      // Safety net: if the bio is on screen but the command line isn't (page
-      // reloaded part-way down, or scrolled up from below), skip the typing
-      // and show the bio right away so it is never left invisible.
-      onVisible(document.querySelector('.md-out'), () => {
-        setTimeout(() => {
-          if (started) return;
-          started = true;
-          termCmd.textContent = cmd;
-          termBlock.classList.add('done');
-        }, 150);
-      }, 0);
-    }
-  }
-
-  /* ==========================================================================
-     ABOUT: INTERACTIVE CODE CARD
-     ========================================================================== */
-
-  const codeCard = document.getElementById('codeCard');
-  if (codeCard) {
-    const tabs = Array.from(codeCard.querySelectorAll('.code-tab'));
-    const files = Array.from(codeCard.querySelectorAll('.code-file'));
-
-    // Index each line so they can print in one after another
-    files.forEach(file => {
-      file.querySelectorAll('.line').forEach((line, i) => line.style.setProperty('--l', i));
-    });
-
-    const printFile = file => {
-      if (reduceMotion) return;
-      file.classList.remove('is-printing');
-      void file.offsetWidth;          // restart the animation
-      file.classList.add('is-printing');
-    };
-
-    const openTab = (tab, focus = false) => {
-      tabs.forEach(t => {
-        const active = t === tab;
-        t.classList.toggle('is-active', active);
-        t.setAttribute('aria-selected', active);
-        t.tabIndex = active ? 0 : -1;
-      });
-      files.forEach(f => {
-        const active = f.id === tab.getAttribute('aria-controls');
-        f.hidden = !active;
-        f.classList.toggle('is-active', active);
-        if (active) printFile(f);
-      });
-      if (focus) tab.focus();
-      // Narrow screens: slide the tab bar so the open tab is fully visible
-      tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-    };
-
-    // Fade the right edge of the tab bar while more tabs are hidden off-screen
-    const tabList = codeCard.querySelector('.code-tabs');
-    if (tabList) {
-      const updateFade = () => tabList.classList.toggle(
-        'is-clipped',
-        tabList.scrollLeft + tabList.clientWidth < tabList.scrollWidth - 1
-      );
-      tabList.addEventListener('scroll', updateFade, { passive: true });
-      window.addEventListener('resize', updateFade);
-      if (document.fonts) document.fonts.ready.then(updateFade);   // widths change once the font loads
-      updateFade();
-    }
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => openTab(tab));
-      // Arrow keys move between tabs (standard tab pattern)
-      tab.addEventListener('keydown', e => {
-        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-        e.preventDefault();
-        const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-        openTab(tabs[next], true);
-      });
-    });
-
-    // Print the first file when the card scrolls into view
-    const firstFile = files.find(f => !f.hidden);
-    if (firstFile && !reduceMotion) {
-      firstFile.style.visibility = 'hidden';
-      onVisible(codeCard, () => {
-        firstFile.style.visibility = '';
-        printFile(firstFile);
-      }, 0.4);
-    }
-
-    // Status bar explains whichever key you hover, focus or tap.
-    // Only the text span is swapped, so the "i" icon next to it stays put.
-    const hint = codeCard.querySelector('.code-hint');
-    const hintText = hint ? hint.querySelector('span:not(.hint-icon)') : null;
-    const hintDefault = hintText ? hintText.textContent : '';
-
-    const showTip = key => {
-      if (!hintText) return;
-      codeCard.querySelectorAll('.k.is-tipped').forEach(k => k.classList.remove('is-tipped'));
-      if (!key) {
-        hintText.textContent = hintDefault;
-        hint.classList.remove('is-live');
-        return;
-      }
-      key.classList.add('is-tipped');
-      const name = document.createElement('span');
-      name.className = 'code-hint-key';
-      name.textContent = key.textContent.replace(/"/g, '') + ':';
-      hintText.replaceChildren(name, ' ' + key.dataset.tip);
-      hint.classList.add('is-live');
-    };
-
-    codeCard.querySelectorAll('.k[data-tip]').forEach(key => {
-      key.addEventListener('mouseenter', () => showTip(key));
-      key.addEventListener('focus', () => showTip(key));
-      key.addEventListener('click', () => showTip(key));
-    });
-    codeCard.addEventListener('mouseleave', () => showTip(null));
-
-    // Copy button: copies the open file as real JSON (line numbers stripped)
-    const copyBtn = document.getElementById('copyJsonBtn');
-    if (copyBtn && navigator.clipboard) {
-      const copyLabel = copyBtn.querySelector('.copy-text');
-      const copyDefault = copyLabel ? copyLabel.textContent : '';
-
-      copyBtn.addEventListener('click', async () => {
-        const file = files.find(f => !f.hidden);
-        if (!file) return;
-        // Work on a copy so the line numbers can be removed without touching the page
-        const clone = file.cloneNode(true);
-        clone.querySelectorAll('.ln, .pulse-dot').forEach(el => el.remove());
-        try {
-          await navigator.clipboard.writeText(clone.textContent.trim());
-          clearTimeout(copyBtn._reset);
-          if (copyLabel) copyLabel.textContent = 'Copied';
-          copyBtn.classList.add('is-copied');
-          copyBtn._reset = setTimeout(() => {
-            if (copyLabel) copyLabel.textContent = copyDefault;
-            copyBtn.classList.remove('is-copied');
-          }, 1600);
-        } catch {
-          // Clipboard blocked by the browser: leave the button as it is
-        }
-      });
-    }
-  }
-
-  /* ==========================================================================
-     SERVICES
-     ========================================================================== */
-
-  onVisible(document.querySelector('.services-grid'), el => el.classList.add('in-view'), 0.25);
-
-  document.querySelectorAll('.service-card').forEach(card => {
-    // Spotlight follows the cursor
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-      card.style.setProperty('--my', `${e.clientY - r.top}px`);
-    });
-
-    // Title and description decode on hover
-    const title = card.querySelector('.service-title');
-    const desc = card.querySelector('.service-desc');
-    const titleText = title ? textOf(title) : '';
-    const descText = desc ? textOf(desc) : '';
-
-    const playDecode = () => {
-      decode(title, titleText, 500);
-      if (desc) setTimeout(() => decode(desc, descText, 900, 8), 150);
-    };
-    card.addEventListener('mouseenter', playDecode);
-    // Touch screens: decode the first time the card lights up (see TOUCH SCREENS below)
-    card.addEventListener('firstlit', playDecode);
-  });
-
-  /* ==========================================================================
      SCROLL REVEAL: PRICING, FEATURED WORK, CONTACT, FOOTER
      Each group staggers its own items (--i = position in the group).
      ========================================================================== */
@@ -501,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function () {
       '.cards-grid .card',
       '.faq-item',
       '.faq-reader',
-      '.sp-steps .sp-step',
       '.sp-body > *',
       '.footer-grid > *'
     ];
@@ -601,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Question decodes the first time it scrolls into view
     onVisible(item, () => setTimeout(() => decode(q, qText, 600), 150 + i * 90), 0.3);
 
-    // Spotlight follows the cursor (same idea as the service cards)
+    // Spotlight follows the cursor
     item.addEventListener('mousemove', e => {
       const r = item.getBoundingClientRect();
       item.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -726,12 +496,6 @@ document.addEventListener('DOMContentLoaded', function () {
      CONTACT (START A PROJECT)
      ========================================================================== */
 
-  // Step titles ("FILL OUT FORM") decode as they appear
-  document.querySelectorAll('.sp-step-title').forEach((title, i) => {
-    const stepText = textOf(title);
-    onVisible(title, () => setTimeout(() => decode(title, stepText, 700), 150 + i * 120), 0.5);
-  });
-
   // Contact form: a message under each field, a timeline that fills as the
   // required fields are completed, and a "Message sent" panel in place of
   // the old redirect to /thanks.html
@@ -740,7 +504,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const sentPanel = startProject ? startProject.querySelector('.sp-sent') : null;
 
   if (startProject && form && sentPanel) {
-    const steps = startProject.querySelectorAll('.sp-step');
     const countText = startProject.querySelector('.sp-count-value');
     const statusText = startProject.querySelector('.sp-status');
     const submitBtn = form.querySelector('.sp-btn');
@@ -774,12 +537,10 @@ document.addEventListener('DOMContentLoaded', function () {
       errorOf(field).textContent = '';
     };
 
-    // Line from step 01 toward 02 (--sp-progress runs 0 to 1, see style.css)
+    // "/ 2 of 4 complete" next to the Required note
     const updateTimeline = () => {
       const done = requiredFields.filter(isValid).length;
-      startProject.style.setProperty('--sp-progress', done / requiredFields.length);
       if (countText) countText.textContent = ` / ${done} of ${requiredFields.length} complete`;
-      steps[0].classList.toggle('is-done', done === requiredFields.length);
     };
 
     requiredFields.forEach(field => {
@@ -806,9 +567,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       form.hidden = true;
       sentPanel.hidden = false;
-      startProject.style.setProperty('--sp-progress', 1);
-      steps[0].classList.add('is-done');
-      if (steps[1]) steps[1].classList.add('is-current');   // 24-hr review is now the live step
       sentPanel.querySelector('.sp-sent-title').focus();
     };
 
@@ -858,61 +616,12 @@ document.addEventListener('DOMContentLoaded', function () {
       requiredFields.forEach(clearField);
       sentPanel.hidden = true;
       form.hidden = false;
-      if (steps[1]) steps[1].classList.remove('is-current');
       updateTimeline();
       requiredFields[0].focus();
     });
 
     // Covers browser autofill and back/forward restores
     updateTimeline();
-  }
-
-  /* ==========================================================================
-     SCROLL-DOT NAVIGATION
-     ========================================================================== */
-
-  const dotsNav = document.getElementById('scrollDots');
-  const scrollDots = document.querySelectorAll('.scroll-dots .dot');
-  const navSections = ['hero', 'about', 'services', 'pricing', 'projects', 'faq', 'contact']
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-
-  // Click a dot -> smooth scroll to its section
-  scrollDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const target = document.getElementById(dot.dataset.target);
-      if (target) target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-    });
-  });
-
-  // Highlight the dot for the section in view
-  const dotObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        scrollDots.forEach(d => d.classList.remove('active'));
-        const activeDot = document.querySelector(`.scroll-dots .dot[data-target="${entry.target.id}"]`);
-        if (activeDot) activeDot.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });   // whichever section crosses the middle of the screen
-
-  navSections.forEach(sec => dotObserver.observe(sec));
-
-  // Lime progress fill along the rail
-  if (dotsNav) {
-    const updateProgress = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      dotsNav.style.setProperty('--progress', max > 0 ? window.scrollY / max : 0);
-      // At the very bottom the footer fills the screen: light up the last dot
-      if (max > 0 && window.scrollY >= max - 4 && scrollDots.length) {
-        scrollDots.forEach(d => d.classList.remove('active'));
-        scrollDots[scrollDots.length - 1].classList.add('active');
-      }
-      // Dock (tablet/phone) only shows once you're past the hero
-      dotsNav.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.5);
-    };
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
   }
 
   /* ==========================================================================
@@ -928,19 +637,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.classList.add('touch-anim');
 
     const litTargets = document.querySelectorAll(
-      '.service-card, .pricing__card, .cards-grid .card, .about-image-wrapper'
+      '.pricing__card, .cards-grid .card'
     );
 
     const litObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const el = entry.target;
-        el.classList.toggle('is-lit', entry.isIntersecting);
-        // One-time extras (e.g. the service card decode) listen for this
-        if (entry.isIntersecting && !el._litOnce) {
-          el._litOnce = true;
-          el.dispatchEvent(new CustomEvent('firstlit'));
-        }
-      });
+      entries.forEach(entry => entry.target.classList.toggle('is-lit', entry.isIntersecting));
     }, { rootMargin: '-35% 0px -35% 0px' });   // the middle 30% of the screen
 
     litTargets.forEach(el => litObserver.observe(el));
@@ -965,4 +666,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ==========================================================================
+     PROCESS (HOW IT WORKS)
+     ========================================================================== */
+
+  // The line draws across, then each step fades in, once the section is on
+  // screen. Skipped for reduced motion, so the steps just show.
+  const processTrack = document.querySelector('.process-track');
+  if (processTrack && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    processTrack.classList.add('is-waiting');
+    onVisible(processTrack, el => el.classList.remove('is-waiting'), 0.3);
+  }
 });

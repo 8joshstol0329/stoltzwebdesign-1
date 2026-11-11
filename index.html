@@ -71,34 +71,62 @@
   <!-- ===== Google reCAPTCHA v3 (site key is public; the secret key lives in Formspree only) ===== -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY" async defer></script>
  
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
 
 <!-- ==========================================================================
      1. HEADER / NAVIGATION
      ========================================================================== -->
-<header>
-  <nav class="navbar">
-    <a class="navbar-brand" href="#">
+<header class="site-header">
+  <nav class="navbar" aria-label="Main">
+    <a class="navbar-brand" href="#hero" aria-label="Stoltz Web Design, back to top">
       <img src="images/stoltzwebdesign-logo.webp"
            srcset="images/stoltzwebdesign-logo-300.webp 300w, images/stoltzwebdesign-logo-448.webp 448w, images/stoltzwebdesign-logo.webp 600w"
            sizes="(max-width: 360px) 200px, (max-width: 768px) 224px, (max-width: 991px) 248px, 300px"
            alt="Stoltz Web Design" width="600" height="300" fetchpriority="high">
     </a>
-    <a class="nav-link nav-btn-cta" href="client-questionnaire.html">Start a Project</a>
+
+    <!-- Section links. From 992px up they sit in the bar; below that they
+         live in the terminal-style menu that the >_ button opens. -->
+    <div class="nav-menu" id="navMenu">
+      <!-- Menu title bar (phones/tablets only): shows where you are on the page -->
+      <div class="nav-menu-bar" aria-hidden="true">
+        <span class="nav-path-dots"></span>
+        <span class="nav-menu-path"><span class="nav-path-user">joshua@stoltz</span>:<span class="nav-path-dir">~</span>$ ls</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#services">Services</a></li>
+        <li><a class="nav-link" href="#work">Work</a></li>
+        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li><a class="nav-link" href="#faq">FAQ</a></li>
+      </ul>
+
+      <!-- Phone + email repeated in the menu so they are one tap away on phones -->
+      <div class="nav-menu-contact">
+        <a href="tel:+15072191159">(507) 219-1159</a>
+        <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a class="nav-phone" href="tel:+15072191159" aria-label="Call (507) 219-1159">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="nav-phone-text">(507) 219-1159</span>
+      </a>
+      <a class="nav-link nav-btn-cta" href="#contact">
+        <span class="nav-btn-text">Get a free quote</span>
+        <span class="nav-btn-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Menu">
+        <span class="nav-toggle-icon" aria-hidden="true">&gt;_</span>
+      </button>
+    </div>
   </nav>
 </header>
 
-<!-- Scroll-dot navigation — replaces the old horizontal nav links -->
-<nav class="scroll-dots" id="scrollDots">
-  <div class="dot" data-target="hero"><span class="dot-label">Home</span></div>
-  <div class="dot" data-target="about"><span class="dot-label">About</span></div>
-  <div class="dot" data-target="services"><span class="dot-label">Services</span></div>
-  <div class="dot" data-target="pricing"><span class="dot-label">Pricing</span></div>
-  <div class="dot" data-target="projects"><span class="dot-label">Work</span></div>
-  <div class="dot" data-target="contact"><span class="dot-label">Contact</span></div>
-</nav>
 <!-- /HEADER / NAVIGATION -->
 
   <main>
@@ -108,10 +136,6 @@
          ========================================================================== -->
     <section class="hero-section" id="hero">
       <div class="hero-inner">
-        <!-- NOTE: .hero-label has no CSS anymore (removed as unused during a style.css
-             cleanup) — this span is currently dead markup, safe to delete whenever. -->
-        <span class="hero-label"></span>
-
         <div class="typing-hero">
           <div class="typing-container">
             <span id="typed-text">JOSHUA STOLTZ</span><span class="cursor"></span>
@@ -127,208 +151,624 @@
 
       <div class="hero-cta">
   <a href="client-questionnaire.html" class="btn-primary-custom"><span class="btn-prompt" aria-hidden="true">&gt;</span> Get a free quote</a>
-<a href="#projects" class="btn-outline-custom">See my work <span class="btn-down" aria-hidden="true">&darr;</span></a>
+<a href="#work" class="btn-outline-custom">See my work <span class="btn-down" aria-hidden="true">&darr;</span></a>
 </div>
 
       </div>
     </section>
     <!-- /HERO SECTION -->
+<!-- ==========================================================================
+     2b. TRUST STRIP
+     Real, checkable proof right under the hero. A <div> on purpose, not a
+     <section>, so it doesn't get a "SEC_0X" corner tag or shift the numbering.
+     ========================================================================== -->
+<div class="trust-strip" role="region" aria-label="Clients and guarantees">
+  <div class="trust-inner">
+
+    <div class="trust-clients">
+      <p class="trust-label">Clients</p>
+      <div class="trust-logos">
+        <img src="images/zm-logo-trust.webp" alt="Z&amp;M Services" width="440" height="200" class="trust-logo trust-logo--zm" loading="lazy" decoding="async">
+        <img src="images/semsca-logo-tan.webp" alt="SEMSCA" width="273" height="240" class="trust-logo trust-logo--semsca" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <span class="trust-divider" aria-hidden="true"></span>
+
+    <ul class="trust-points">
+      <li>100% hand-coded</li>
+      <li>100/100 Lighthouse SEO</li>
+      <li>Fixed quote before work starts</li>
+      <li>You own your site</li>
+    </ul>
+
+  </div>
+</div>
+<!-- /TRUST STRIP -->
+
+<!-- ==========================================================================
+     2c. PROBLEM SECTION
+     What goes wrong for local businesses, in their own words, then the hand-off
+     to About ("That's my job"). Sits after the trust strip, before About.
+     ========================================================================== -->
+
+<section class="problem-section" id="problem" aria-labelledby="problem-title">
+  <div class="problem-inner">
+
+    <div class="section-heading">
+      <p class="section-label">// THE PROBLEM</p>
+      <h2 class="section-title" id="problem-title">Good businesses lose customers to bad websites every day.</h2>
+    </div>
+
+    <ul class="problem-cards" role="list">
+      <li class="problem-card">
+        <span class="problem-tag" aria-hidden="true">No website at all</span>
+        <h3 class="problem-quote">&ldquo;We don't need a website, we have Facebook.&rdquo;</h3>
+        <div class="mock mock-fb" aria-hidden="true">
+          <span class="mock-fb-head">&minus; FACEBOOK ONLY</span>
+          <div class="mock-post">
+            <div class="mock-post-head">
+              <span class="mock-avatar"></span>
+              <span>
+                <span class="mock-name">Your Business</span>
+                <span class="mock-time">3d</span>
+              </span>
+            </div>
+            <div>Open till 6 today! Message us for a free quote.</div>
+            <div class="mock-reactions"><span>Like · 4</span><span>Comment · 2</span><span>Share</span></div>
+            <div class="mock-comment">
+              <span class="mock-avatar mock-avatar--sm"></span>
+              <span class="mock-comment-bubble"><span class="mock-name">Customer</span>Do you have a website? Couldn't find you on Google.</span>
+            </div>
+            <div class="mock-comment">
+              <span class="mock-avatar mock-avatar--sm"></span>
+              <span class="mock-comment-bubble"><span class="mock-name">Another customer</span>Are you open Sundays? Can't find your hours anywhere.</span>
+            </div>
+            <div class="mock-reach">Seen by 38 of your 1,200 followers</div>
+          </div>
+          <div class="mock-fb-list">
+            <span>Hard to find on Google</span>
+            <span>Hours and prices get buried in the feed</span>
+            <span>Facebook decides who sees your posts</span>
+            <span>You don't own the page</span>
+          </div>
+        </div>
+        <span class="sr-only">With only a Facebook page, you're hard to find on Google, your hours and prices get buried in the feed, Facebook decides who sees your posts, and you don't own the page.</span>
+        <p class="problem-text">Customers who search Google never see your posts. They call whoever shows up first.</p>
+        <p class="problem-fix">A real site that shows up on Google</p>
+      </li>
+      <li class="problem-card">
+        <span class="problem-tag" aria-hidden="true">Looks like everyone else</span>
+        <h3 class="problem-quote">&ldquo;Our site looks like every other template.&rdquo;</h3>
+        <div class="mock mock-vs" aria-hidden="true">
+
+          <div class="mock-vs-col">
+            <span class="mock-vs-head mock-vs-head--tpl">&minus; TEMPLATE</span>
+            <div class="mock-site mock-site--tpl">
+              <div class="mock-site-bar">
+                <span class="mock-site-dots"></span>
+                <span class="mock-site-url">&#128274; <b>yourbusiness</b>.sitebuilder.com</span>
+              </div>
+              <div class="mock-tpl-ad">Made with SiteBuilder. Create yours free &rarr;</div>
+              <div class="mock-tpl-nav"><span class="mock-tpl-logo">YOUR LOGO</span><span class="mock-tpl-burger"></span></div>
+              <div class="mock-tpl-hero">
+                <span class="mock-tpl-h">Quality Service<br>You Can Trust</span>
+                <span class="mock-tpl-sub">Serving our community with excellence.</span>
+                <span class="mock-tpl-btn">Learn More</span>
+              </div>
+              <div class="mock-tpl-cards"><span>Quality</span><span>Reliable</span><span>Affordable</span></div>
+              <div class="mock-tpl-foot">&copy; Your Business &middot; Powered by SiteBuilder</div>
+            </div>
+            <div class="mock-vs-list mock-vs-list--tpl">
+              <span>Same as thousands</span>
+              <span>Slow builder code</span>
+              <span>Locked in</span>
+              <span>Support tickets</span>
+            </div>
+          </div>
+
+          <div class="mock-vs-col">
+            <span class="mock-vs-head mock-vs-head--cst">+ CUSTOM</span>
+            <div class="mock-site mock-site--cst">
+              <div class="mock-site-bar">
+                <span class="mock-site-dots"></span>
+                <span class="mock-site-url">&#128274; <b>pineridgelawn.com</b></span>
+              </div>
+              <div class="mock-cst-nav">
+                <span class="mock-cst-logo"><span class="mock-cst-mark"></span>Pine Ridge</span>
+                <span class="mock-cst-call">Call</span>
+              </div>
+              <div class="mock-cst-hero">
+                <span class="mock-cst-h">Southern Minnesota's <em>sharpest</em> lawns.</span>
+                <span class="mock-cst-sub">Weekly mowing, Austin to Albert Lea.</span>
+                <span class="mock-cst-btn">Get a free quote</span>
+              </div>
+              <div class="mock-cst-work">
+                <span class="mock-cst-shot mock-cst-shot--before"><span>BEFORE</span></span>
+                <span class="mock-cst-shot mock-cst-shot--after"><span>AFTER</span></span>
+              </div>
+              <div class="mock-cst-strip"><span>Local</span><span>Insured</span><span>24-hr quotes</span></div>
+            </div>
+            <div class="mock-vs-list mock-vs-list--cst">
+              <span>Made from scratch</span>
+              <span>Loads fast</span>
+              <span>You own the code</span>
+              <span>Call a real person</span>
+            </div>
+          </div>
+
+          <span class="mock-vs-badge">VS</span>
+        </div>
+        <span class="sr-only">A builder template uses the same theme as thousands of other sites, is slowed down by builder code, locks you into the builder, and gives you a support ticket instead of a person. A custom site is designed from scratch, loads fast, you own the code, and you have a local person to call.</span>
+        <p class="problem-text">When every site looks the same, customers pick on price, or call whoever looks most established.</p>
+        <p class="problem-fix">A site that makes you the obvious pick</p>
+      </li>
+      <li class="problem-card">
+        <span class="problem-tag" aria-hidden="true">No one to call for help</span>
+        <h3 class="problem-quote">&ldquo;The person who built it disappeared.&rdquo;</h3>
+        <div class="mock mock-help" aria-hidden="true">
+          <span class="mock-help-head">&minus; NO ONE TO CALL</span>
+          <div class="mock-chat">
+            <div class="mock-chat-head">
+              <span class="mock-avatar mock-avatar--sm"></span>
+              <span>
+                <span class="mock-name">Website Guy</span>
+                <span class="mock-time">Last active 8 months ago</span>
+              </span>
+            </div>
+            <div class="mock-chat-body">
+              <span class="mock-chat-date">Mar 3</span>
+              <span class="mock-bubble">Hi! Can you update our hours on the site?</span>
+              <span class="mock-chat-date">Jun 19</span>
+              <span class="mock-bubble">Hello? Still there?</span>
+              <span class="mock-chat-date">Sep 2</span>
+              <span class="mock-bubble">Customers keep showing up when we're closed.</span>
+              <span class="mock-status">Read</span>
+              <span class="mock-noreply">No reply in 8 months</span>
+            </div>
+          </div>
+          <div class="mock-help-list">
+            <span>Can't change your own hours</span>
+            <span>Logins are in his name, not yours</span>
+            <span>When it breaks, nobody fixes it</span>
+            <span>Your domain could quietly expire</span>
+          </div>
+        </div>
+        <span class="sr-only">When the person who built your site disappears, you can't change your own hours, the logins are in their name, nobody fixes it when it breaks, and your domain could quietly expire.</span>
+        <p class="problem-text">Your hours are still wrong online, and you're paying for a site nobody will fix.</p>
+        <p class="problem-fix">You own it, and you can call me</p>
+      </li>
+    </ul>
+
+    <div class="problem-close">
+      <p class="problem-stakes">Every week your site isn't working, those calls go to someone else.</p>
+      <p class="problem-handoff">You shouldn't have to become a web designer to fix that. That's my job.</p>
+      <a href="#about" class="problem-next">Here's how I work <span aria-hidden="true">&darr;</span></a>
+    </div>
+
+  </div>
+</section>
+<!-- /PROBLEM SECTION -->
 
 <!-- ==========================================================================
      3. ABOUT SECTION
      ========================================================================== -->
-<section class="about-section" id="about">
-  <div class="about-container">
 
-    <div class="about-header">
-      <p class="section-label">// ABOUT</p>
-      <h2 class="section-title">Hi, I'm Joshua</h2>
-    </div>
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="about__inner">
+    <p class="about__eyebrow">// ABOUT</p>
 
-    <div class="about-grid">
+    <figure class="about__photo">
+      <img src="images/joshua-2.jpg" alt="Joshua Stoltz, web designer in Austin, MN"
+           width="600" height="700" loading="lazy">
+      <figcaption class="about__tag">AUSTIN, MN</figcaption>
+    </figure>
 
-      <!-- Left Column: Photo & Site Checks -->
-      <div class="about-media">
+    <div class="about__card">
+      <h2 class="about__title" id="about-title">Hi, I'm Joshua.</h2>
 
-        <!-- Photo in a file window. The bar under it shows the image's alt text as code. -->
-        <figure class="about-image-wrapper">
-          <img src="images/headshot.webp" srcset="images/headshot-360.webp 360w, images/headshot-540.webp 540w, images/headshot.webp 720w" sizes="340px" alt="Joshua Stoltz" class="about-portrait" width="720" height="720" loading="lazy" decoding="async">
-          <figcaption class="about-caption" aria-hidden="true"><span class="cap-attr">alt</span><span class="cap-punct">=</span><span class="cap-str">"Joshua Stoltz"</span></figcaption>
-        </figure>
+      <p class="about__lead">
+        I'm a web designer in Austin, MN. I build websites for local businesses
+        that want to look professional online and get more customers calling.
+      </p>
 
-        <!-- Site checks: boot up on scroll, click to expand -->
-        <div class="about-badges">
-          <p class="badge-title"># every site I build passes these</p>
-          <div class="badge-item">
-            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-1">
-              <span class="badge-text">Looks right on every device</span>
-              <span class="badge-status" aria-hidden="true">[ OK ]</span>
-            </button>
-            <p class="badge-detail" id="badge-detail-1" hidden>Checked on phones, tablets and computers before your site goes live.</p>
-          </div>
-          <div class="badge-item">
-            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-2">
-              <span class="badge-text">Built from scratch, no templates</span>
-              <span class="badge-status" aria-hidden="true">[ OK ]</span>
-            </button>
-            <p class="badge-detail" id="badge-detail-2" hidden>Designed and built just for your business. No Wix, no page builders, no look-alike templates.</p>
-          </div>
-          <div class="badge-item">
-            <button class="badge" type="button" aria-expanded="false" aria-controls="badge-detail-3">
-              <span class="badge-text">Local to Austin, MN</span>
-              <span class="badge-status" aria-hidden="true">[ OK ]</span>
-            </button>
-            <p class="badge-detail" id="badge-detail-3" hidden>Based right here in Austin. Happy to meet in person and talk through your project.</p>
-          </div>
-          <p class="badge-hint" aria-hidden="true">
-            <span><span class="badge-pass">3 passed</span>, 3 total</span>
-            <span>// tap a check for details</span>
-          </p>
-        </div>
+      <ul class="about__chips">
+        <li>100% hand-coded</li>
+        <li>Mobile-first</li>
+        <li>Web Page Design cert.</li>
+        <li>AAS, Riverland CC (May 2027)</li>
+      </ul>
+
+      <div class="about__actions">
+        <a href="#contact" class="btn btn--primary">Get a free quote</a>
+        <a href="zm-project.html" class="btn btn--outline">See the Z&amp;M project →</a>
       </div>
-
-      <!-- Right Column: Bio Copy -->
-      <div class="about-content">
-
-        <!-- Terminal intro: command types out, then the comment fades in.
-             Keep this block: the bio below stays hidden until it finishes (.done). -->
-        <div class="term-block">
-          <p class="term-prompt">
-            <span class="sr-only">Terminal command: open my about file</span>
-            <span aria-hidden="true"><span class="term-user">joshua@stoltz</span>:<span class="term-path">~</span>$
-            <span class="term-cmd" data-cmd="cat about.md">cat about.md</span><span class="term-caret"></span></span>
-          </p>
-          <p class="term-comment"># opening my about file... here's a quick intro ↓</p>
-        </div>
-
-        <!-- about.md: the "file" the command above prints out -->
-        <div class="md-out">
-
-          <p class="md-lead">
-            I'm Joshua, a web designer in Austin, MN. I build websites for local businesses that
-            want to look professional online and get more customers calling.
-          </p>
-
-          <!-- Split diff: what you won't get (left) vs. what you get (right) -->
-          <div class="md-diff">
-            <div class="diff-pane">
-              <div class="diff-file"><span aria-hidden="true">--- </span>what you won't get</div>
-              <ul class="diff-lines">
-                <li class="diff-del"><span class="diff-mark" aria-hidden="true">-</span><span>a template a hundred other businesses use</span></li>
-                <li class="diff-del"><span class="diff-mark" aria-hidden="true">-</span><span>monthly platform fees</span></li>
-                <li class="diff-del"><span class="diff-mark" aria-hidden="true">-</span><span>a support ticket line</span></li>
-              </ul>
-            </div>
-            <div class="diff-pane diff-pane--add">
-              <div class="diff-file"><span aria-hidden="true">+++ </span>what you get</div>
-              <ul class="diff-lines">
-                <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>a site designed around your business</span></li>
-                <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>a fixed price in writing before work starts</span></li>
-                <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>one local person you can call or meet</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Two sections side by side; they stack when the column gets narrow -->
-          <div class="md-row">
-            <div class="md-block md-block--wide">
-              <h3 class="md-h">how I work</h3>
-              <p>
-                You work directly with me from the first conversation to launch day. I design your
-                site first so you can see it and request changes before I build anything, and I only
-                take on a few projects at a time so yours gets my full attention.
-              </p>
-            </div>
-
-            <div class="md-block">
-              <h3 class="md-h">a little more about me</h3>
-              <p>
-                I'm finishing my AAS in Web Development at Riverland Community College and I'm a
-                Phi Theta Kappa honors member. Off the clock, I build video games for fun.
-              </p>
-            </div>
-          </div>
-
-        </div><!-- /.md-out -->
-
-      </div><!-- /.about-content -->
-    </div><!-- /.about-grid -->
-  </div><!-- /.about-container -->
+    </div>
+  </div>
 </section>
 <!-- /ABOUT SECTION -->
 
-<section class="services-section" id="services">
+<!-- ==========================================================================
+     4. SERVICES SECTION
+     ========================================================================== -->
+
+<section class="services-section" id="services" aria-labelledby="services-title">
+
   <div class="section-heading">
     <p class="section-label">// WHAT I DO</p>
-    <h2 class="section-title">Services</h2>
-    <p class="services-intro">Your website, plus the logo and printed pieces that go with it, all designed to look like one business.</p>
+    <h2 class="section-title" id="services-title">Services</h2>
+    <p class="services-intro">
+      Your website, plus the logo and printed pieces that go with it, all designed
+      to look like one business.
+    </p>
   </div>
 
-  <!-- The kit: a real example of each kind of work -->
-  <div class="kit">
-    <figure class="kit-item">
-      <div class="kit-browser">
-        <img src="zm-fullpage.webp" alt="The Z&amp;M Services website" width="800" height="1113" loading="lazy" decoding="async">
+  <div class="svc-grid">
+
+    <!-- ===== Featured: Custom Websites ===== -->
+    <article class="svc-feature">
+      <div class="svc-feature__media">
+        <div class="svc-art-site" role="img" aria-label="Example small-business website">
+          <div class="svc-site-bar">
+            <span class="svc-site-dot"></span>
+            <span class="svc-site-dot"></span>
+            <span class="svc-site-dot"></span>
+            <span class="svc-site-url"></span>
+          </div>
+          <div class="svc-site-nav">
+            <span class="svc-site-brand">
+              <span class="svc-site-mark"></span>
+              <span class="svc-line svc-line--dark svc-line--thick" style="--w:56px"></span>
+            </span>
+            <span class="svc-site-links">
+              <span class="svc-line" style="--w:24px"></span>
+              <span class="svc-line" style="--w:24px"></span>
+              <span class="svc-line" style="--w:24px"></span>
+              <span class="svc-site-btn"></span>
+            </span>
+          </div>
+          <div class="svc-site-hero">
+            <div class="svc-site-copy">
+              <span class="svc-site-headline">Your business, online.</span>
+              <span class="svc-line" style="--w:90%"></span>
+              <span class="svc-line" style="--w:70%"></span>
+              <span class="svc-site-ctas">
+                <span class="svc-site-btn" style="--w:52px; --h:16px"></span>
+                <span class="svc-site-btn svc-site-btn--outline" style="--w:52px; --h:16px"></span>
+              </span>
+            </div>
+            <div class="svc-site-photo svc-photo">
+              <svg width="100" height="50" viewBox="0 0 100 50" aria-hidden="true">
+                <path d="M0 50 L30 18 L50 36 L68 22 L100 50 Z" fill="#8d99a6"/>
+                <circle cx="78" cy="12" r="6" fill="#e9edf1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="svc-site-feats">
+            <span class="svc-site-feat"><span class="svc-site-icon"></span><span class="svc-line"></span></span>
+            <span class="svc-site-feat"><span class="svc-site-icon"></span><span class="svc-line"></span></span>
+            <span class="svc-site-feat"><span class="svc-site-icon"></span><span class="svc-line"></span></span>
+          </div>
+        </div>
       </div>
-      <figcaption>Websites</figcaption>
-    </figure>
 
-    <figure class="kit-item">
-      <img class="kit-shot" src="images/service-google.webp" alt="Example of a Google Business Profile for Stoltz Web Design" width="460" height="400" loading="lazy" decoding="async">
-      <figcaption>Google Profiles</figcaption>
-    </figure>
-
-    <figure class="kit-item">
-      <img class="kit-shot" src="images/service-social.webp" alt="Example of a social media page with a matching cover and profile picture" width="460" height="400" loading="lazy" decoding="async">
-      <figcaption>Social Graphics</figcaption>
-    </figure>
-
-    <figure class="kit-item">
-      <div class="kit-logo">
-        <img src="images/stoltzwebdesign-logo-448.webp" alt="The Stoltz Web Design logo" width="448" height="224" loading="lazy" decoding="async">
+      <div class="svc-feature__body">
+        <p class="svc-feature__tag">MAIN SERVICE</p>
+        <h3 class="svc-feature__title">Custom Websites</h3>
+        <p class="svc-feature__text">
+          A fast, hand-coded site built around how your customers find you and call you.
+        </p>
+        <ul class="svc-feature__list">
+          <li>Design &amp; development</li>
+          <li>Works on every phone</li>
+          <li>Hosting &amp; deployment</li>
+        </ul>
+        <a href="zm-project.html" class="svc-btn">See an example →</a>
       </div>
-      <figcaption>Logos</figcaption>
-    </figure>
+    </article>
 
-    <figure class="kit-item">
-      <img class="kit-flyer" src="images/service-flyer.webp" alt="A Stoltz Web Design flyer" width="450" height="579" loading="lazy" decoding="async">
-      <figcaption>Flyers</figcaption>
-    </figure>
+    <!-- ===== The other five services + pricing tile ===== -->
+    <ul class="svc-cards">
 
-    <figure class="kit-item">
-      <div class="kit-cards">
-        <img src="images/service-card-front.webp" alt="" width="520" height="312" loading="lazy" decoding="async">
-        <img src="images/service-card-back.webp" alt="A Stoltz Web Design business card" width="520" height="312" loading="lazy" decoding="async">
-      </div>
-      <figcaption>Business Cards</figcaption>
-    </figure>
-  </div>
+      <!-- Google Profiles -->
+      <li class="svc-card">
+        <div class="svc-card__media">
+          <div class="svc-art-gbp" role="img" aria-label="Example Google business listing">
+            <div class="svc-gbp-map">
+              <span class="svc-gbp-road svc-gbp-road--h"></span>
+              <span class="svc-gbp-road svc-gbp-road--v1"></span>
+              <span class="svc-gbp-road svc-gbp-road--v2"></span>
+              <svg class="svc-gbp-pin" width="16" height="22" viewBox="0 0 16 22" aria-hidden="true">
+                <path d="M8 0C3.6 0 0 3.6 0 8c0 6 8 14 8 14s8-8 8-14c0-4.4-3.6-8-8-8z" fill="#d64545"/>
+                <circle cx="8" cy="8" r="3" fill="#ffffff"/>
+              </svg>
+            </div>
+            <div class="svc-gbp-body">
+              <span class="svc-gbp-name">Your Business</span>
+              <span class="svc-gbp-rating">
+                <svg width="52" height="9" viewBox="0 0 52 9" aria-hidden="true">
+                  <g fill="#f2b01e">
+                    <path d="M4.5 0l1.3 2.9 3.2.3-2.4 2.1.7 3.1-2.8-1.7-2.8 1.7.7-3.1L0 3.2l3.2-.3z"/>
+                    <path transform="translate(10.5 0)" d="M4.5 0l1.3 2.9 3.2.3-2.4 2.1.7 3.1-2.8-1.7-2.8 1.7.7-3.1L0 3.2l3.2-.3z"/>
+                    <path transform="translate(21 0)" d="M4.5 0l1.3 2.9 3.2.3-2.4 2.1.7 3.1-2.8-1.7-2.8 1.7.7-3.1L0 3.2l3.2-.3z"/>
+                    <path transform="translate(31.5 0)" d="M4.5 0l1.3 2.9 3.2.3-2.4 2.1.7 3.1-2.8-1.7-2.8 1.7.7-3.1L0 3.2l3.2-.3z"/>
+                    <path transform="translate(42 0)" d="M4.5 0l1.3 2.9 3.2.3-2.4 2.1.7 3.1-2.8-1.7-2.8 1.7.7-3.1L0 3.2l3.2-.3z"/>
+                  </g>
+                </svg>
+                <span class="svc-line" style="--w:40px"></span>
+              </span>
+              <span class="svc-gbp-actions">
+                <span class="svc-pill"></span>
+                <span class="svc-pill svc-pill--outline"></span>
+                <span class="svc-pill svc-pill--outline" style="--w:32px"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <h3 class="svc-card__title">Google Profiles</h3>
+        <p class="svc-card__text">Show up when people search nearby.</p>
+      </li>
 
-  <!-- The full list, in two groups -->
-  <div class="svc-lists">
-    <div class="svc-list">
-      <h3 class="md-h">on screen</h3>
-      <ul class="diff-lines">
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Custom web design</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Web development</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Responsive design</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Hosting &amp; deployment</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Google Business Profile setup</span></li>
-      </ul>
-    </div>
+      <!-- Social Graphics -->
+      <li class="svc-card">
+        <div class="svc-card__media">
+          <div class="svc-art-social" role="img" aria-label="Example social media profile and post">
+            <span class="svc-phone">
+              <span class="svc-phone-banner"></span>
+              <span class="svc-phone-avatar"></span>
+              <span class="svc-line" style="--w:30px"></span>
+              <span class="svc-phone-grid"><span></span><span></span><span></span><span></span></span>
+            </span>
+            <span class="svc-post">
+              <span class="svc-post-image">NOW OPEN</span>
+              <span class="svc-line" style="--w:70%"></span>
+              <span class="svc-post-icons"><span></span><span></span></span>
+            </span>
+          </div>
+        </div>
+        <h3 class="svc-card__title">Social Graphics</h3>
+        <p class="svc-card__text">Banners and posts that match your brand.</p>
+      </li>
 
-    <div class="svc-list">
-      <h3 class="md-h">print and branding</h3>
-      <ul class="diff-lines">
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Logo design</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Flyers</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Business cards</span></li>
-        <li class="diff-add"><span class="diff-mark" aria-hidden="true">+</span><span>Social media graphics</span></li>
-      </ul>
-    </div>
+      <!-- Logos -->
+      <li class="svc-card">
+        <div class="svc-card__media">
+          <div class="svc-art-logos" role="img" aria-label="Three example logo options">
+            <span class="svc-logo">
+              <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <circle cx="15" cy="15" r="13" fill="none" stroke="#3b6ea8" stroke-width="4"/>
+                <circle cx="15" cy="15" r="4" fill="#3b6ea8"/>
+              </svg>
+              <span class="svc-line svc-line--dark" style="--w:36px"></span>
+            </span>
+            <span class="svc-logo">
+              <svg width="32" height="30" viewBox="0 0 32 30" aria-hidden="true">
+                <path d="M16 2 L30 28 H2 Z" fill="#2f3a45"/>
+                <path d="M16 12 L23 26 H9 Z" fill="#f6f7f9"/>
+              </svg>
+              <span class="svc-line svc-line--dark" style="--w:36px"></span>
+            </span>
+            <span class="svc-logo">
+              <span class="svc-logo-letter">A</span>
+              <span class="svc-line svc-line--dark" style="--w:36px"></span>
+            </span>
+          </div>
+        </div>
+        <h3 class="svc-card__title">Logos</h3>
+        <p class="svc-card__text">A mark people remember.</p>
+      </li>
+
+      <!-- Flyers -->
+      <li class="svc-card">
+        <div class="svc-card__media">
+          <div class="svc-art-flyer" role="img" aria-label="Example printed flyer">
+            <span class="svc-flyer-head">
+              <span class="svc-line svc-line--white svc-line--thick" style="--w:80%"></span>
+              <span class="svc-line svc-line--white svc-line--thick" style="--w:55%"></span>
+            </span>
+            <span class="svc-photo"></span>
+            <span class="svc-line" style="--w:60%"></span>
+            <span class="svc-line" style="--w:45%"></span>
+            <span class="svc-flyer-foot">
+              <span class="svc-flyer-cta"></span>
+              <span class="svc-qr"></span>
+            </span>
+          </div>
+        </div>
+        <h3 class="svc-card__title">Flyers</h3>
+        <p class="svc-card__text">Print pieces that bring people in.</p>
+      </li>
+
+      <!-- Business Cards -->
+      <li class="svc-card">
+        <div class="svc-card__media" role="img" aria-label="Example business card, front and back">
+          <span class="svc-bcard svc-bcard--front">
+            <span class="svc-bcard-mark"></span>
+            <span class="svc-line svc-line--white svc-line--thick" style="--w:40px"></span>
+          </span>
+          <span class="svc-bcard svc-bcard--back">
+            <span class="svc-bcard-lines">
+              <span class="svc-line svc-line--dark svc-line--thick" style="--w:44px"></span>
+              <span class="svc-line svc-line--blue" style="--w:30px; height:3px"></span>
+              <span class="svc-line" style="--w:40px; height:3px"></span>
+              <span class="svc-line" style="--w:36px; height:3px"></span>
+            </span>
+            <span class="svc-qr" style="--s:20px"></span>
+          </span>
+        </div>
+        <h3 class="svc-card__title">Business Cards</h3>
+        <p class="svc-card__text">Cards that match your website.</p>
+      </li>
+
+      <!-- Pricing tile -->
+      <li>
+        <a href="#pricing" class="svc-more">
+          <span class="svc-more__title">See pricing →</span>
+          <span class="svc-more__text">Packages for every service</span>
+        </a>
+      </li>
+
+    </ul>
   </div>
 </section>
 <!-- /SERVICES SECTION -->
+
+<!-- ==========================================================================
+     4b. CASE STUDY PREVIEW (Z&M Services)
+     ========================================================================== -->
+<section class="case-study-section" id="case-study" aria-labelledby="case-study-title">
+  <div class="case-study-inner">
+
+    <div class="case-study-copy">
+      <div class="section-heading">
+        <p class="section-label">// CASE STUDY</p>
+        <h2 class="section-title" id="case-study-title">Z&amp;M Services went from Facebook posts to a full website.</h2>
+      </div>
+
+      <p class="case-study-story">They started with only a Facebook page. I designed and hand-coded a multi-page site with a before/after gallery and a quote form, set up their Google Business Profile, and keep it running on a maintenance plan.</p>
+
+      <!-- Real Google Lighthouse scores for zmservices-llc.com (mobile) -->
+      <ul class="case-study-scores" aria-label="Google Lighthouse scores, mobile">
+        <li class="score">
+          <span class="score-ring" style="--score: 100"><span class="score-num">100</span></span>
+          <span class="score-label">SEO</span>
+        </li>
+        <li class="score">
+          <span class="score-ring" style="--score: 100"><span class="score-num">100</span></span>
+          <span class="score-label">Best Practices</span>
+        </li>
+        <li class="score">
+          <span class="score-ring" style="--score: 92"><span class="score-num">92</span></span>
+          <span class="score-label">Accessibility</span>
+        </li>
+      </ul>
+      <p class="case-study-source">Google Lighthouse, mobile</p>
+
+      <div class="case-study-actions">
+        <a href="zm-project.html" class="case-study-btn case-study-btn--primary">Read the case study</a>
+        <a href="https://zmservices-llc.com/" class="case-study-btn case-study-btn--ghost" target="_blank" rel="noopener">Visit the live site <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+
+    <figure class="case-study-browser">
+      <div class="case-study-bar" aria-hidden="true">
+        <span class="case-study-dot"></span><span class="case-study-dot"></span><span class="case-study-dot"></span>
+        <span class="case-study-url">zmservices-llc.com</span>
+      </div>
+      <img src="zm-fullpage.webp" alt="The Z&amp;M Services website" width="800" height="1113" loading="lazy" decoding="async">
+    </figure>
+
+  </div>
+</section>
+<!-- /CASE STUDY SECTION -->
+
+
+<!-- ==========================================================================
+     5. FEATURED WORK SECTION
+     ========================================================================== -->
+<section class="clients-section" id="work" aria-labelledby="work-title">
+
+  <div class="section-heading">
+    <p class="section-label">// RECENT WORK</p>
+    <h2 class="section-title" id="work-title">Client Work</h2>
+    <p class="clients-intro">Real sites for real businesses in southern Minnesota.</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Z&M Services -->
+    <article class="card">
+      <div class="card-preview">
+        <img src="zm-fullpage.webp" alt="Z&amp;M Services homepage" width="1280" height="720" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <p class="client-label">Lawn care · Austin, MN</p>
+          <h3 class="client-name">Z&amp;M Services</h3>
+          <p class="description">
+            From Facebook posts only to a full website with quote forms and a
+            before-and-after gallery.
+          </p>
+        </div>
+        <a href="zm-project.html" class="btn-view-project">View project <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- SEMSCA -->
+    <article class="card">
+      <div class="card-preview">
+        <img src="semsca-fullpage.webp" alt="SEMSCA homepage" width="1280" height="720" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <p class="client-label">Nonprofit · Southeastern MN</p>
+          <h3 class="client-name">SEMSCA</h3>
+          <p class="description">
+            Homepage design and build for a saddle club, with events and a
+            sponsor showcase.
+          </p>
+        </div>
+        <a href="semsca.html" class="btn-view-project">View project <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Open spot -->
+  <div class="work-cta">
+    <div class="work-cta__info">
+      <span class="work-cta__code" aria-hidden="true">&lt;your-site-here /&gt;</span>
+      <div>
+        <h3 class="work-cta__title">Your business could be next.</h3>
+        <p class="work-cta__text">I take on a few new projects at a time. Tell me about yours.</p>
+      </div>
+    </div>
+    <a href="#contact" class="work-cta__btn">Start your project →</a>
+  </div>
+
+</section>
+<!-- /FEATURED WORK SECTION -->
+<!-- ==========================================================================
+     5b. PROCESS SECTION (How it works)
+     ========================================================================== -->
+<section class="process-section" id="process" aria-labelledby="process-title">
+  <div class="process-inner">
+    <div class="section-heading">
+      <p class="section-label">// HOW IT WORKS</p>
+      <h2 class="section-title" id="process-title">Four steps from first call to launch.</h2>
+    </div>
+
+    <div class="process-track">
+      <span class="process-line" aria-hidden="true"><span class="process-line-fill"></span></span>
+      <ol class="process-steps">
+        <li class="process-step is-first" style="--i: 0">
+          <span class="process-num" aria-hidden="true">01</span>
+          <h3 class="process-title">Get a free quote</h3>
+          <p>Fill out the form or call me about your business and what you need. I'll get back to you within 24 hours.</p>
+        </li>
+        <li class="process-step" style="--i: 1">
+          <span class="process-num" aria-hidden="true">02</span>
+          <h3 class="process-title">Approve a fixed price</h3>
+          <p>You get a written quote with a fixed price before any work starts. No surprise bills.</p>
+        </li>
+        <li class="process-step" style="--i: 2">
+          <span class="process-num" aria-hidden="true">03</span>
+          <h3 class="process-title">Design &amp; build</h3>
+          <p>I design your site in Figma for you to review, then hand-code it once you approve.</p>
+        </li>
+        <li class="process-step" style="--i: 3">
+          <span class="process-num" aria-hidden="true">04</span>
+          <h3 class="process-title">Launch &amp; care</h3>
+          <p>Your site goes live and you own it. The Care Plan keeps it updated and running.</p>
+        </li>
+      </ol>
+    </div>
+
+    <a href="#contact" class="process-cta">Get a free quote</a>
+  </div>
+</section>
+<!-- /PROCESS SECTION -->
+
 <!-- ==========================================================================
      4b. PRICING SECTION
      ========================================================================== -->
@@ -340,7 +780,7 @@
       <h2 class="pricing__heading" id="pricing-heading">Simple, honest pricing</h2>
       <p class="pricing__intro">
         Every site is designed from scratch in Figma and hand-coded by me. No templates,
-        no page builders, no monthly platform fees. Here's exactly what you get, so there
+        no page builders, no platform subscriptions. Here's exactly what you get, so there
         are no surprises.
       </p>
     </div>
@@ -355,16 +795,16 @@
           <span class="pricing__amount">$600</span>
         </p>
         <p class="pricing__fit">
-          <strong>Best for:</strong> new businesses, a single service, or anyone who needs
-          a professional online presence without a big budget.
+          <strong>Best for:</strong> new businesses, single-service businesses, or anyone who needs
+          a professional site without a big budget.
         </p>
         <ul class="pricing__list">
-          <li><strong>A custom design made for your brand</strong>, not a template someone else is also using</li>
-          <li><strong>One scrolling page</strong> with everything a customer needs: who you are, what you offer, and how to reach you</li>
-          <li><strong>Works on every device.</strong> Looks right on phones, tablets and computers</li>
+          <li><strong>Custom design for your brand.</strong> Not a template anyone else can buy</li>
+          <li><strong>One scrolling page</strong> with everything a customer needs: who you are, what you offer and how to reach you</li>
+          <li><strong>Works on every device:</strong> phones, tablets and computers</li>
           <li><strong>A contact form</strong> that sends messages straight to your email</li>
-          <li><strong>Google basics</strong> so people searching for your business can find you</li>
-          <li><strong>Domain and hosting set up for you.</strong> You don't touch anything technical</li>
+          <li><strong>Set up to show on Google,</strong> with your name, location and services where search engines look for them</li>
+          <li><strong>Domain and hosting handled for you.</strong> You never touch anything technical</li>
           <li><strong>2 rounds of revisions</strong> to get it just right</li>
         </ul>
         <a class="pricing__btn pricing__btn--outline" href="#contact">Get a free quote</a>
@@ -379,16 +819,16 @@
           <span class="pricing__amount">$1,500</span>
         </p>
         <p class="pricing__fit">
-          <strong>Best for:</strong> established local businesses that want room to show off
-          their services, their work and their story.
+          <strong>Best for:</strong> established local businesses with more to show: services,
+          past work and their story.
         </p>
         <p class="pricing__plus">Everything in the One-Page Site, plus:</p>
         <ul class="pricing__list">
           <li><strong>Up to 5 pages</strong>, like Home, About, Services, Gallery and Contact</li>
           <li><strong>A photo gallery</strong> or before-and-after showcase of your work</li>
-          <li><strong>Google Maps and social media links</strong> so customers can find and follow you</li>
-          <li><strong>Link previews</strong>, so your site shows a clean image and title when shared on Facebook or in a text</li>
-          <li><strong>Privacy policy, terms and a custom "page not found" page</strong> so your site looks finished everywhere</li>
+          <li><strong>Google Maps and social links</strong> so customers can find and follow you</li>
+          <li><strong>Clean link previews.</strong> Your logo and a title show up when someone shares your site in a text or on Facebook</li>
+          <li><strong>Finishing pages included:</strong> a standard privacy policy, terms and a custom "page not found" screen</li>
           <li><strong>3 rounds of revisions</strong></li>
         </ul>
         <a class="pricing__btn" href="#contact">Get a free quote</a>
@@ -402,15 +842,15 @@
           <span class="pricing__per">/ month</span>
         </p>
         <p class="pricing__fit">
-          <strong>Best for:</strong> business owners who'd rather run their business than
-          worry about their website. Available for any site I build.
+          <strong>Best for:</strong> owners who'd rather run their business than worry about their
+          website. Available for any site I build.
         </p>
         <ul class="pricing__list">
           <li><strong>Hosting included.</strong> I keep your site online and running fast</li>
-          <li><strong>Small updates each month</strong>, like new hours, prices, photos or a menu change. Just send me a message</li>
+          <li><strong>Small updates every month</strong>, like new hours, prices, photos or a menu. Just send me a message</li>
           <li><strong>Security kept current</strong>, including the SSL certificate that shows the padlock in the browser</li>
           <li><strong>Monthly check-up</strong> to make sure your forms and links still work</li>
-          <li><strong>A real person to call</strong>, not a support ticket, when you need help</li>
+          <li><strong>A real person to call</strong>, not a support ticket</li>
         </ul>
         <a class="pricing__btn pricing__btn--outline" href="#contact">Ask about the Care Plan</a>
       </article>
@@ -442,287 +882,8 @@
   </div>
 </section>
 <!-- /PRICING SECTION -->
-
 <!-- ==========================================================================
-     5. FEATURED CLIENTS / PORTFOLIO SECTION
-     ========================================================================== -->
-<section class="clients-section" id="projects">
-  <div class="section-heading">
-    <p class="section-label">// FEATURED WORK</p>
-    <h2 class="section-title">Featured Clients</h2>
-  </div>
-
-  <div class="cards-grid">
-    <!-- Client 1: Z&M Services -->
-    <div class="card card--zm">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <img src="zm-fullpage.webp" alt="Full-page screenshot of the Z&amp;M Services website" width="800" height="1113" loading="lazy" decoding="async">
-      </div>
-      <span class="client-label">CLIENT #01</span>
-      <h3 class="client-name">Z &amp; M SERVICES . Lawn care</h3>
-      <p class="project-type">Went from facebook posts only to a full website with quote forms and a before/after gallery.</p>
-      <div class="tags">
-        <span class="tag">QUOTE FORMS</span>
-        <span class="tag">BEFORE/AFTER GALLERY</span>
-      </div>
-      <p class="description">Landscaping, mowing, junk removal and more.</p>
-      <a href="zm-project.html" class="btn-view-project" aria-label="View project: Z&amp;M Services case study">VIEW PROJECT <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-
-        <!-- Client 2: SEMSCA -->
-    <div class="card card--semsca">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <img src="semsca-fullpage.webp" alt="Full-page screenshot of the SEMSCA website" width="800" height="1498" loading="lazy" decoding="async">
-      </div>
-      <span class="client-label">CLIENT #02</span>
-      <h3 class="client-name">SEMSCA · Saddle club nonprofit</h3>
-      <p class="project-type">Homepage design and build for the Southeastern Minnesota Saddle Club Association, with upcoming events and a sponsor showcase.</p>
-      <div class="tags">
-        <span class="tag">NONPROFIT</span>
-        <span class="tag">SPONSOR SHOWCASE</span>
-      </div>
-      <a href="semsca.html" class="btn-view-project" aria-label="View project: SEMSCA case study">VIEW PROJECT <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-
-        <!-- Client 3: Open slot / call to action -->
-    <div class="card card--upcoming">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
-      </div>
-      <span class="client-label">CLIENT #03</span>
-      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
-      <p class="project-type">This spot is open. Your business could be next.</p>
-      <a href="client-questionnaire.html" class="btn-view-project">START YOUR PROJECT <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-    
-    <!-- Client 4: Open slot / call to action -->
-    <div class="card card--upcoming">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
-      </div>
-      <span class="client-label">CLIENT #04</span>
-      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
-      <p class="project-type">WEBSITE</p>
-      <div class="tags">
-        <span class="tag">WEB DEVELOPMENT</span>
-        <span class="tag">CUSTOM DESIGN</span>
-      </div>
-      <p class="description">Another open spot. Your business could be client #04.</p>
-      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-
-    <!-- Client 5: Open slot / call to action -->
-    <div class="card card--upcoming">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
-      </div>
-      <span class="client-label">CLIENT #05</span>
-      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
-      <p class="project-type">WEBSITE</p>
-      <div class="tags">
-        <span class="tag">WEB DEVELOPMENT</span>
-        <span class="tag">CUSTOM DESIGN</span>
-      </div>
-      <p class="description">Another open spot. Your business could be client #05.</p>
-      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-
-    <!-- Client 6: Open slot / call to action -->
-    <div class="card card--upcoming">
-      <div class="card-preview">
-        <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="preview-empty" aria-hidden="true">&lt;your-site-here /&gt;<span class="card-cursor"></span></div>
-      </div>
-      <span class="client-label">CLIENT #06</span>
-      <h3 class="client-name">UPCOMING<span class="card-cursor" aria-hidden="true"></span></h3>
-      <p class="project-type">WEBSITE</p>
-      <div class="tags">
-        <span class="tag">WEB DEVELOPMENT</span>
-        <span class="tag">CUSTOM DESIGN</span>
-      </div>
-      <p class="description">Another open spot. Your business could be client #06.</p>
-      <a href="client-questionnaire.html" class="btn-view-project">YOUR BUSINESS HERE <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-<!-- /FEATURED CLIENTS SECTION -->
-
-<!-- ==========================================================================
-     5. CONTACT SECTION (START A PROJECT)
-     ========================================================================== -->
-<section class="start-project" id="contact" aria-labelledby="sp-title">
-  <div class="sp-inner">
-
-    <!-- 5a. Heading + intro -->
-    <div class="sp-header">
-      <div class="section-heading">
-        <p class="section-label">// LET'S BUILD SOMETHING</p>
-        <h2 class="section-title" id="sp-title">START A PROJECT</h2>
-      </div>
-      <p class="sp-intro">Have a project in mind? Fill out the quick message form here, or fast-track your project scope with the full intake form.</p>
-    </header>
-
-    <!-- 5b. Timeline. Step 01 is current while the form is open; script.js fills
-         the line toward 02 as the required fields are completed. -->
-    <ol class="sp-steps" role="list">
-      <li class="sp-step is-current">
-        <div class="sp-step-marker" aria-hidden="true">
-          <span class="sp-step-num">
-            <span class="sp-step-digits">01</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-          </span>
-          <span class="sp-step-line"><span class="sp-step-fill"></span></span>
-        </div>
-        <div class="sp-step-text">
-          <h3 class="sp-step-title">FILL OUT FORM</h3>
-          <p>Tell me about your business goals and style preferences.</p>
-        </div>
-      </li>
-      <li class="sp-step">
-        <div class="sp-step-marker" aria-hidden="true">
-          <span class="sp-step-num"><span class="sp-step-digits">02</span></span>
-          <span class="sp-step-line"></span>
-        </div>
-        <div class="sp-step-text">
-          <h3 class="sp-step-title">24-HR REVIEW</h3>
-          <p>I'll review your scope and outline site structure options.</p>
-        </div>
-      </li>
-      <li class="sp-step">
-        <div class="sp-step-marker" aria-hidden="true">
-          <span class="sp-step-num"><span class="sp-step-digits">03</span></span>
-          <span class="sp-step-line"></span>
-        </div>
-        <div class="sp-step-text">
-          <h3 class="sp-step-title">STRATEGY CALL</h3>
-          <p>We discuss custom pricing, timeline, and kick off the design.</p>
-        </div>
-      </li>
-    </ol>
-
-    <!-- 5c. Two-column container: form (left) + fast-track card and contact info (right) -->
-    <div class="sp-body">
-
-      <!-- Left Column: Formspree Contact Form -->
-      <div class="sp-form-wrap">
-        <form class="sp-form" id="contactForm" action="https://formspree.io/f/maqzoybq" method="POST">
-          <div class="sp-field-row">
-            <div class="sp-field">
-              <label for="name">Name <span class="sp-required" aria-hidden="true">*</span></label>
-              <input class="sp-input" type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name" required
-                     aria-describedby="name-error" data-missing="Please enter your name." />
-              <p class="sp-error" id="name-error"></p>
-            </div>
-            <div class="sp-field">
-              <label for="phone">Phone <span class="sp-optional">(optional)</span></label>
-              <input class="sp-input" type="tel" id="phone" name="phone" placeholder="(507) 000-0000" autocomplete="tel" />
-              <p class="sp-error"></p>
-            </div>
-          </div>
-
-          <div class="sp-field">
-            <label for="email">Email <span class="sp-required" aria-hidden="true">*</span></label>
-            <input class="sp-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required
-                   aria-describedby="email-error" data-missing="Please enter your email." data-invalid="That email address looks incomplete." />
-            <p class="sp-error" id="email-error"></p>
-          </div>
-
-          <div class="sp-field">
-            <label for="service">Service Needed <span class="sp-required" aria-hidden="true">*</span></label>
-            <select class="sp-input" id="service" name="service" required
-                    aria-describedby="service-error" data-missing="Please choose a service.">
-              <option value="" disabled selected>Select a service...</option>
-              <option value="new-website">New Website</option>
-              <option value="redesign">Website Redesign</option>
-              <option value="landing-page">Landing Page</option>
-              <option value="maintenance">Website Maintenance</option>
-              <option value="seo">SEO Optimization</option>
-              <option value="logo-design">Logo Design</option>
-              <option value="print-design">Flyers or Business Cards</option>
-              <option value="social-graphics">Social Media Graphics</option>
-              <option value="google-business-profile">Google Business Profile Setup</option>
-              <option value="other">Other / Not Sure Yet</option>
-            </select>
-            <p class="sp-error" id="service-error"></p>
-          </div>
-
-          <div class="sp-field">
-            <label for="message">Project Details <span class="sp-required" aria-hidden="true">*</span></label>
-            <textarea class="sp-input" id="message" name="message" placeholder="Tell me about your business and what you're looking for..." required
-                      aria-describedby="message-error" data-missing="Please add a few details about your project."></textarea>
-            <p class="sp-error" id="message-error"></p>
-          </div>
-
-          <!-- Honeypot: hidden from people, bots fill it in, Formspree drops those submissions -->
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-          <div class="sp-actions">
-            <button type="submit" class="sp-btn">
-              <span class="sp-btn-label">Send Message</span>
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </button>
-            <p class="sp-count"><span class="sp-required" aria-hidden="true">*</span> Required<span class="sp-count-value" aria-live="polite"></span></p>
-          </div>
-
-          <p class="sp-status" role="alert" data-message="That didn't send. Please try again, or email hello@stoltzwebdesign.com."></p>
-        </form>
-
-        <!-- Shown by script.js after a successful send -->
-        <div class="sp-sent" role="status" hidden>
-          <span class="sp-sent-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-          </span>
-          <h3 class="sp-sent-title" tabindex="-1">MESSAGE SENT</h3>
-          <p>Thanks, <span class="sp-sent-name">there</span>. I'll review your scope and outline site structure options within 24 hours.</p>
-          <button type="button" class="sp-btn-ghost sp-sent-reset">Send another message</button>
-        </div>
-      </div>
-
-      <!-- Right Column: Fast-track card + Contact Info -->
-      <aside class="sp-aside">
-        <div class="sp-fasttrack">
-          <h3 class="sp-kicker">Fast-track it</h3>
-          <p>Already know what you want? Fill out the detailed project form and I can quote you faster.</p>
-          <a href="client-questionnaire.html" class="sp-btn-ghost">
-            Pre-Flight Intake Form
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-          </a>
-        </div>
-
-        <div class="sp-contact">
-          <h3 class="sp-kicker">Reach me directly</h3>
-          <ul class="sp-contact-list" role="list">
-            <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
-              <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a>
-            </li>
-            <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
-              <span>Austin, MN</span>
-            </li>
-            <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
-              <span>Responds within 24 hours</span>
-            </li>
-          </ul>
-          <!-- TODO: social icon links go here (same markup pattern as footer-socials below) -->
-        </div>
-      </aside>
-
-    </div><!-- /.sp-body -->
-
-  </div>
-</section>
-<!-- /CONTACT SECTION -->
-
-<!-- ==========================================================================
-     5b. FAQ SECTION
-     Place between FEATURED CLIENTS and CONTACT.
+     5c. FAQ SECTION
      ========================================================================== -->
 <section class="faq-section" id="faq" aria-labelledby="faq-heading">
   <div class="faq-container">
@@ -832,16 +993,7 @@
             </div>
           </details>
 
-          <details class="faq-item" name="faq">
-            <summary class="faq-question">
-              <span class="faq-num" aria-hidden="true">09</span>
-              <span class="faq-q">You're still in school. Is that a problem?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </summary>
-            <div class="faq-answer">
-              <p>I'm finishing my AAS in Web Development at Riverland Community College and already building sites for Minnesota businesses like <a href="zm-project.html">Z&amp;M Services</a> and <a href="semsca.html">SEMSCA</a>. You work directly with me from first call to launch, and I only take on a few projects at a time so each one gets full attention.</p>
-            </div>
-          </details>
+         
 
         </div><!-- /.faq-list -->
 
@@ -861,7 +1013,147 @@
   </div>
 </section>
 <!-- /FAQ SECTION -->
-  </main>
+
+<!-- ==========================================================================
+     5. CONTACT SECTION (START A PROJECT)
+     ========================================================================== -->
+<section class="start-project" id="contact" aria-labelledby="sp-title">
+  <div class="sp-inner">
+
+    <!-- 5a. Heading + intro -->
+    <div class="sp-header">
+      <div class="section-heading">
+        <p class="section-label">// LET'S BUILD SOMETHING</p>
+        <h2 class="section-title" id="sp-title">START A PROJECT</h2>
+      </div>
+      <p class="sp-intro">Have a project in mind? Fill out the quick message form here, or fast-track your project scope with the full intake form.</p>
+    </div>
+
+
+    <!-- 5c. Two-column container: form (left) + fast-track card and contact info (right) -->
+    <div class="sp-body">
+
+      <!-- Left Column: Formspree Contact Form -->
+      <div class="sp-form-wrap">
+        <form class="sp-form" id="contactForm" action="https://formspree.io/f/maqzoybq" method="POST">
+          <div class="sp-field-row">
+            <div class="sp-field">
+              <label for="name">Name <span class="sp-required" aria-hidden="true">*</span></label>
+              <input class="sp-input" type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name" required
+                     aria-describedby="name-error" data-missing="Please enter your name." />
+              <p class="sp-error" id="name-error"></p>
+            </div>
+            <div class="sp-field">
+              <label for="phone">Phone <span class="sp-optional">(optional)</span></label>
+              <input class="sp-input" type="tel" id="phone" name="phone" placeholder="(507) 000-0000" autocomplete="tel" />
+              <p class="sp-error"></p>
+            </div>
+          </div>
+
+          <div class="sp-field">
+            <label for="email">Email <span class="sp-required" aria-hidden="true">*</span></label>
+            <input class="sp-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" autocomplete="email" required
+                   aria-describedby="email-error" data-missing="Please enter your email." data-invalid="That email address looks incomplete." />
+            <p class="sp-error" id="email-error"></p>
+          </div>
+
+          <div class="sp-field">
+            <label for="service">Service Needed <span class="sp-required" aria-hidden="true">*</span></label>
+            <select class="sp-input" id="service" name="service" required
+                    aria-describedby="service-error" data-missing="Please choose a service.">
+              <option value="" disabled selected>Select a service...</option>
+              <option value="new-website">New Website</option>
+              <option value="redesign">Website Redesign</option>
+              <option value="landing-page">Landing Page</option>
+              <option value="maintenance">Website Maintenance</option>
+              <option value="seo">SEO Optimization</option>
+              <option value="logo-design">Logo Design</option>
+              <option value="print-design">Flyers or Business Cards</option>
+              <option value="social-graphics">Social Media Graphics</option>
+              <option value="google-business-profile">Google Business Profile Setup</option>
+              <option value="other">Other / Not Sure Yet</option>
+            </select>
+            <p class="sp-error" id="service-error"></p>
+          </div>
+
+          <div class="sp-field">
+            <label for="message">Project Details <span class="sp-required" aria-hidden="true">*</span></label>
+            <textarea class="sp-input" id="message" name="message" placeholder="Tell me about your business and what you're looking for..." required
+                      aria-describedby="message-error" data-missing="Please add a few details about your project."></textarea>
+            <p class="sp-error" id="message-error"></p>
+          </div>
+
+          <!-- Honeypot: hidden from people, bots fill it in, Formspree drops those submissions -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="sp-actions">
+            <button type="submit" class="sp-btn">
+              <span class="sp-btn-label">Send Message</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </button>
+            <p class="sp-count"><span class="sp-required" aria-hidden="true">*</span> Required<span class="sp-count-value" aria-live="polite"></span></p>
+          </div>
+
+          <p class="sp-status" role="alert" data-message="That didn't send. Please try again, or email hello@stoltzwebdesign.com."></p>
+        </form>
+
+        <!-- Shown by script.js after a successful send -->
+        <div class="sp-sent" role="status" hidden>
+          <span class="sp-sent-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+          </span>
+          <h3 class="sp-sent-title" tabindex="-1">MESSAGE SENT</h3>
+          <p>Thanks, <span class="sp-sent-name">there</span>. I'll review your scope and outline site structure options within 24 hours.</p>
+          <button type="button" class="sp-btn-ghost sp-sent-reset">Send another message</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Fast-track card + Contact Info -->
+      <aside class="sp-aside">
+        <div class="sp-fasttrack">
+          <h3 class="sp-kicker">Fast-track it</h3>
+          <p>Already know what you want? Fill out the detailed project form and I can quote you faster.</p>
+          <a href="client-questionnaire.html" class="sp-btn-ghost">
+            Pre-Flight Intake Form
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+
+        <div class="sp-contact">
+          <h3 class="sp-kicker">Reach me directly</h3>
+          <ul class="sp-contact-list" role="list">
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+              <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a>
+            </li>
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+              <span>Austin, MN</span>
+            </li>
+            <li>
+              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+              <span>Responds within 24 hours</span>
+            </li>
+          </ul>
+          <div class="sp-socials" role="group" aria-label="Social media">
+            <a href="https://www.facebook.com/stoltzwebdesign" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/joshua-stoltz-bab0a749/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/8joshstol0329/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /.sp-body -->
+
+  </div>
+</section>
+<!-- /CONTACT SECTION -->
   </main>
 
 <!-- ==========================================================================
@@ -893,10 +1185,13 @@
         <p class="footer-label">// Site</p>
         <div class="footer-nav-list">
           <a href="#">Home</a>
+          <a href="#problem">Why a website</a>
           <a href="#about">About</a>
           <a href="#services">Services</a>
+          <a href="#case-study">Case study</a>
+          <a href="#work">Work</a>
+          <a href="#process">Process</a>
           <a href="#pricing">Pricing</a>
-          <a href="#projects">Featured clients</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
@@ -932,7 +1227,7 @@
 </footer>
 <!-- /FOOTER -->
 
-<script src="js/script.js"></script>
+<script src="js/script.min.js"></script>
  
 </body>
 </html>

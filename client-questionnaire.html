@@ -22,7 +22,6 @@
       --font-mono: 'Source Code Pro', monospace;
 
       /* Font weights */
-      --fw-regular: 400;
       --fw-bold: 700;
 
       /* Font sizes */
@@ -38,7 +37,6 @@
       --space-sm: 8px;
       --space-md: 16px;
       --space-lg: 32px;
-      --space-xl: 48px;
     }
 
     * { box-sizing: border-box; }
@@ -101,6 +99,32 @@
       text-transform: uppercase;
       color: var(--color-accent);
       margin: 0 0 8px;
+    }
+
+    /* Back link to the main site (sits above the header card) */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;                 /* easy tap target on phones */
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--color-tan);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .back-link span { transition: transform 0.15s ease; }
+
+    .back-link:hover { color: var(--color-accent); }
+    .back-link:hover span { transform: translateX(-3px); }
+
+    .back-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     /* Progress Bar */
@@ -329,6 +353,8 @@
 <body>
 
   <div class="wrap">
+    <a href="index.html" class="back-link"><span aria-hidden="true">&larr;</span> stoltzwebdesign.com</a>
+
     <header>
       <p class="eyebrow">// pre-flight</p>
       <h1>Ship It.</h1>
@@ -611,6 +637,27 @@
     form.addEventListener('input', updateProgress);
     form.addEventListener('change', updateProgress);
     updateProgress();
+
+    // Back link: if they've started filling out the form, check before leaving
+    // so they don't lose their answers by accident.
+    const backLink = document.querySelector('.back-link');
+
+    function formHasAnswers() {
+      if (form.style.display === 'none') return false;   // already submitted
+      return Array.from(form.elements).some(el => {
+        if (el.type === 'hidden' || el.type === 'submit' || el.tagName === 'BUTTON') return false;
+        if (el.type === 'checkbox' || el.type === 'radio') return el.checked;
+        return el.value && el.value.trim().length > 0;
+      });
+    }
+
+    if (backLink) {
+      backLink.addEventListener('click', e => {
+        if (formHasAnswers() && !confirm("Leave the form? Your answers won't be saved.")) {
+          e.preventDefault();
+        }
+      });
+    }
 
     // reCAPTCHA v3: ask Google for a one-time token that Formspree verifies.
     const RECAPTCHA_SITE_KEY = '6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY';
