@@ -572,12 +572,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // reCAPTCHA v3: ask Google for a one-time token that Formspree verifies
     const RECAPTCHA_SITE_KEY = '6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY';
-    const getRecaptchaToken = () => new Promise((resolve, reject) => {
-      if (typeof grecaptcha === 'undefined') return reject(new Error('reCAPTCHA did not load'));
+    // The reCAPTCHA script only loads the first time someone uses the form, so
+    // visitors who never touch it don't download Google's code at all.
+    let recaptchaScript = null;
+    const loadRecaptcha = () => recaptchaScript ||= new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js?render=' + RECAPTCHA_SITE_KEY;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = () => { recaptchaScript = null; reject(new Error('reCAPTCHA did not load')); };
+      document.head.appendChild(s);
+    });
+
+    const getRecaptchaToken = () => loadRecaptcha().then(() => new Promise((resolve, reject) => {
       grecaptcha.ready(() => {
         grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' }).then(resolve, reject);
       });
-    });
+    }));
 
     // Get the token early: start fetching it the first time someone clicks into
     // the form, so it's usually ready by the time they hit Send. Tokens expire

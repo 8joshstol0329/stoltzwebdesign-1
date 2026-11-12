@@ -62,14 +62,11 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Ubuntu:wght@400;700&family=Playfair+Display:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Ubuntu:wght@400;700&family=Playfair+Display:wght@700&display=swap"></noscript>
  
-  <!-- ===== Icons ===== -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+  <!-- ===== Icons: inline SVGs in the page, no icon library to download ===== -->
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
 
-  <!-- ===== Google reCAPTCHA v3 (site key is public; the secret key lives in Formspree only) ===== -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LflMOQtAAAAACCQQO16reyTGxxkavxoKQ863CHY" async defer></script>
+  <!-- ===== Google reCAPTCHA v3: script.js loads it the first time someone clicks into the form ===== -->
  
   <link rel="stylesheet" href="css/style.min.css">
 </head>
@@ -150,7 +147,7 @@
        
 
       <div class="hero-cta">
-  <a href="client-questionnaire.html" class="btn-primary-custom"><span class="btn-prompt" aria-hidden="true">&gt;</span> Get a free quote</a>
+  <a href="#contact" class="btn-primary-custom"><span class="btn-prompt" aria-hidden="true">&gt;</span> Get a free quote</a>
 <a href="#work" class="btn-outline-custom">See my work <span class="btn-down" aria-hidden="true">&darr;</span></a>
 </div>
 
@@ -359,8 +356,11 @@
     <p class="about__eyebrow">// ABOUT</p>
 
     <figure class="about__photo">
-      <img src="images/joshua-2.jpg" alt="Joshua Stoltz, web designer in Austin, MN"
-           width="600" height="700" loading="lazy">
+      <img src="images/joshua-2-600.jpg"
+     srcset="images/joshua-2-600.jpg 600w, images/joshua-2-1200.jpg 1200w"
+     sizes="(max-width: 900px) 70vw, 560px"
+     alt="Joshua Stoltz, web designer in Austin, MN"
+     width="600" height="700" loading="lazy" decoding="async">
       <figcaption class="about__tag">AUSTIN, MN</figcaption>
     </figure>
 
@@ -999,8 +999,8 @@
 
         <!-- Previous / next (desktop reader only) -->
         <div class="faq-nav">
-          <button type="button" class="faq-nav-btn" data-step="-1" aria-label="Previous question"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
-          <button type="button" class="faq-nav-btn" data-step="1" aria-label="Next question"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          <button type="button" class="faq-nav-btn" data-step="-1" aria-label="Previous question"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+          <button type="button" class="faq-nav-btn" data-step="1" aria-label="Next question"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
       </div><!-- /.faq-body -->
     </div><!-- /.faq-reader -->
@@ -1123,15 +1123,15 @@
           <h3 class="sp-kicker">Reach me directly</h3>
           <ul class="sp-contact-list" role="list">
             <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+              <span class="sp-icon" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
               <a href="mailto:hello@stoltzwebdesign.com">hello@stoltzwebdesign.com</a>
             </li>
             <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+              <span class="sp-icon" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
               <span>Austin, MN</span>
             </li>
             <li>
-              <span class="sp-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+              <span class="sp-icon" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
               <span>Responds within 24 hours</span>
             </li>
           </ul>
@@ -1220,7 +1220,7 @@
     <!-- 6e. Bottom bar: copyright + back-to-top -->
     <div class="footer-bottom">
       <p>&copy;2026 stoltzwebdesign. All rights reserved.</p>
-      <a href="#top" class="footer-top-link">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+      <a href="#top" class="footer-top-link">Back to top <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
     </div>
 
   </div>

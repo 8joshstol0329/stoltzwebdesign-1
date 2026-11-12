@@ -433,6 +433,8 @@ header {
 
 /* ---------- Phone, quote button, menu button ---------- */
 .nav-actions {
+  position: relative;
+  z-index: 11;                        /* sits above the logo's see-through padding so the phone button is fully tappable */
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -1538,7 +1540,7 @@ header.is-scrolled .navbar-brand img { scale: 0.82; }
 .mock-tpl-foot {
   padding: 0.5em;
   font-size: 0.6em;
-  color: #8a929e;
+  color: #5f6773;
   text-align: center;
   background: #f7f8fa;
   border-top: 1px solid #eef0f3;
@@ -1787,7 +1789,7 @@ header.is-scrolled .navbar-brand img { scale: 0.82; }
   align-self: center;
   margin-top: 4px;
   font-size: 0.64rem;
-  color: #8a8d91;
+  color: #65686d;
 }
 
 .mock-bubble {
@@ -1797,14 +1799,14 @@ header.is-scrolled .navbar-brand img { scale: 0.82; }
   font-size: 0.78rem;
   line-height: 1.35;
   color: #fff;
-  background: #3a7bd5;
+  background: #2d6cc4;
   border-radius: 14px 14px 4px 14px;
 }
 
 .mock-status {
   align-self: flex-end;
   font-size: 0.64rem;
-  color: #8a8d91;
+  color: #65686d;
 }
 
 .mock-noreply {
@@ -5368,10 +5370,11 @@ select.sp-input option {
   border-radius: 4px;
 }
  
-/* Font Awesome glyph, same icons as before */
-.sp-icon i {
-  font-size: 1.125rem;
-  line-height: 1;
+/* Inline SVG icon */
+.sp-icon svg {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
 }
  
 /* ---------- Tablet: aside drops under the form ---------- */
@@ -5677,7 +5680,7 @@ a.footer-contact-item:hover { color: var(--color-accent); }
   text-decoration: none;
 }
 
-.footer-top-link:hover i { animation: arrow-bob 0.6s ease-in-out infinite alternate; }
+.footer-top-link:hover svg { animation: arrow-bob 0.6s ease-in-out infinite alternate; }
 
 @keyframes arrow-bob {
   to { translate: 0 -4px; }
@@ -6118,7 +6121,7 @@ a.footer-contact-item:hover { color: var(--color-accent); }
   .footer-resources a { transition: none; }
 
   .footer-bottom p::after,
-  .footer-top-link:hover i { animation: none; }
+  .footer-top-link:hover svg { animation: none; }
 
   /* Case studies */
   .case-back-link,
